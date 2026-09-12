@@ -1,0 +1,330 @@
+[
+  {
+    "id": "genre_synthwave",
+    "name": "Retro 80s Neon / Synthwave",
+    "tags": [
+      "modern",
+      "vintage",
+      "neon",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_cyberpunk",
+    "name": "Cyberpunk Dystopia",
+    "tags": [
+      "futuristic",
+      "sci-fi",
+      "neon",
+      "night",
+      "urban"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_high_fantasy",
+    "name": "High Fantasy Epic",
+    "tags": [
+      "medieval",
+      "magic",
+      "epic-scale"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_post_apoc",
+    "name": "Post-Apocalyptic Wasteland",
+    "tags": [
+      "modern",
+      "ruins",
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_ancient_myth",
+    "name": "Ancient Mythology",
+    "tags": [
+      "ancient",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_noir",
+    "name": "Noir Detective",
+    "tags": [
+      "vintage",
+      "dark",
+      "night",
+      "urban"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_steampunk",
+    "name": "Steampunk Adventure",
+    "tags": [
+      "vintage",
+      "sci-fi"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_space_opera",
+    "name": "Space Opera",
+    "tags": [
+      "futuristic",
+      "sci-fi",
+      "space"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_gothic_horror",
+    "name": "Gothic Horror",
+    "tags": [
+      "vintage",
+      "dark",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_wild_west",
+    "name": "Wild West Frontier",
+    "tags": [
+      "vintage",
+      "dry",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_feudal_japan",
+    "name": "Feudal Japan / Samurai Era",
+    "tags": [
+      "ancient",
+      "medieval"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_urban_drama",
+    "name": "Modern Urban Drama",
+    "tags": [
+      "modern",
+      "urban"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_solarpunk",
+    "name": "Solarpunk Utopia",
+    "tags": [
+      "futuristic",
+      "bright",
+      "nature"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_underwater_civ",
+    "name": "Underwater Civilization",
+    "tags": [
+      "futuristic",
+      "aquatic",
+      "underwater"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_viking",
+    "name": "Viking Age Saga",
+    "tags": [
+      "ancient",
+      "cold"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_egyptian",
+    "name": "Egyptian Mythos",
+    "tags": [
+      "ancient",
+      "magic",
+      "dry",
+      "hot"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_victorian_gothic",
+    "name": "Victorian Gothic",
+    "tags": [
+      "vintage",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_tropical_adventure",
+    "name": "Tropical Adventure",
+    "tags": [
+      "modern",
+      "hot",
+      "nature"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_arctic_survival",
+    "name": "Arctic Survival",
+    "tags": [
+      "modern",
+      "cold",
+      "snow"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_cosmic_horror",
+    "name": "Cosmic Horror",
+    "tags": [
+      "dark",
+      "magic",
+      "sci-fi"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_street_racing",
+    "name": "Street Racing Underground",
+    "tags": [
+      "modern",
+      "night",
+      "neon",
+      "urban"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_medieval_politics",
+    "name": "Medieval Kingdom Politics",
+    "tags": [
+      "medieval"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_cyber_noir",
+    "name": "Cybernetic Noir",
+    "tags": [
+      "futuristic",
+      "sci-fi",
+      "dark",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_desert_nomad",
+    "name": "Desert Nomad Saga",
+    "tags": [
+      "ancient",
+      "dry",
+      "hot"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_enchanted_forest",
+    "name": "Enchanted Forest Fable",
+    "tags": [
+      "magic",
+      "nature"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_corporate_scifi",
+    "name": "Corporate Sci-Fi Thriller",
+    "tags": [
+      "futuristic",
+      "sci-fi",
+      "indoor",
+      "urban"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_post_war",
+    "name": "Post-War Reconstruction Drama",
+    "tags": [
+      "vintage",
+      "modern"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_mecha",
+    "name": "Mecha Warfare",
+    "tags": [
+      "futuristic",
+      "sci-fi",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_renaissance",
+    "name": "Renaissance Court Intrigue",
+    "tags": [
+      "medieval",
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "genre_urban_fantasy",
+    "name": "Urban Fantasy Underground",
+    "tags": [
+      "modern",
+      "magic",
+      "urban",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  }
+]

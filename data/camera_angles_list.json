@@ -1,0 +1,294 @@
+[
+  {
+    "id": "angle_low_threequarter",
+    "name": "Low angle, three-quarter view",
+    "tags": [
+      "high_motion",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_eye_level",
+    "name": "Eye-level straight-on",
+    "tags": [
+      "low_motion",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_high_down",
+    "name": "High angle looking down",
+    "tags": [
+      "low_motion",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_dutch_tilt",
+    "name": "Dutch tilt for dramatic tension",
+    "tags": [
+      "combat",
+      "high_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_over_shoulder",
+    "name": "Over-the-shoulder perspective",
+    "tags": [
+      "intimate",
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_worms_eye",
+    "name": "Worm's eye view from ground level",
+    "tags": [
+      "high_motion",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_birds_eye",
+    "name": "Bird's eye overhead shot",
+    "tags": [
+      "outdoor",
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_profile",
+    "name": "Profile side angle",
+    "tags": [
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_rear_threequarter",
+    "name": "Three-quarter rear view",
+    "tags": [
+      "low_motion",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_extreme_low_heroic",
+    "name": "Extreme low angle heroic shot",
+    "tags": [
+      "combat",
+      "high_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_slight_high_intimate",
+    "name": "Slight high angle intimate framing",
+    "tags": [
+      "intimate",
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_symmetrical",
+    "name": "Straight-on symmetrical composition",
+    "tags": [
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_canted_action",
+    "name": "Canted angle mid-action",
+    "tags": [
+      "high_motion",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_ground_tracking",
+    "name": "Ground-level tracking angle",
+    "tags": [
+      "high_motion",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_elevated_vantage",
+    "name": "Elevated vantage overlooking scene",
+    "tags": [
+      "outdoor",
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_close_low_intimate",
+    "name": "Close low angle intimate portrait",
+    "tags": [
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_wide_high_establishing",
+    "name": "Wide high angle establishing view",
+    "tags": [
+      "outdoor",
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_steep_low_silhouette",
+    "name": "Steep low angle silhouette shot",
+    "tags": [
+      "dark",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_slight_dutch_candid",
+    "name": "Slight dutch tilt casual candid",
+    "tags": [
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_frontal_confrontation",
+    "name": "Direct frontal confrontation angle",
+    "tags": [
+      "tactical",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_angled_threequarter",
+    "name": "Angled three-quarter profile",
+    "tags": [
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_low_sweeping",
+    "name": "Low sweeping tracking angle",
+    "tags": [
+      "high_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_overhead_crowd",
+    "name": "Overhead crowd perspective",
+    "tags": [
+      "outdoor",
+      "crowd"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_close_intimate_eyelevel",
+    "name": "Close intimate eye-level",
+    "tags": [
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_high_dramatic_overlook",
+    "name": "High dramatic overlook angle",
+    "tags": [
+      "dark",
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_slight_low_casual",
+    "name": "Slight low angle casual portrait",
+    "tags": [
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_aerial_drone",
+    "name": "Aerial drone overhead sweep",
+    "tags": [
+      "outdoor",
+      "high_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_tight_over_shoulder_duo",
+    "name": "Tight over-the-shoulder duo angle",
+    "tags": [
+      "duo",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_low_silhouette_sky",
+    "name": "Low dramatic silhouette against sky",
+    "tags": [
+      "dark",
+      "epic-scale"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "angle_handheld_shaky",
+    "name": "Handheld shaky action angle",
+    "tags": [
+      "high_motion",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  }
+]

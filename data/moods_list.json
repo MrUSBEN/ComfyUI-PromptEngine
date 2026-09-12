@@ -1,0 +1,298 @@
+[
+  {
+    "id": "mood_moody_electric_nostalgic",
+    "name": "Moody, electric, nostalgic",
+    "tags": [
+      "night",
+      "neon"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_tense_foreboding",
+    "name": "Tense and foreboding",
+    "tags": [
+      "dark",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_warm_intimate",
+    "name": "Warm and intimate",
+    "tags": [
+      "intimate",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_epic_awe",
+    "name": "Epic and awe-inspiring",
+    "tags": [
+      "epic-scale",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_melancholic_quiet",
+    "name": "Melancholic and quiet",
+    "tags": [
+      "low_motion",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_playful_lighthearted",
+    "name": "Playful and lighthearted",
+    "tags": [
+      "casual",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_mysterious_eerie",
+    "name": "Mysterious and eerie",
+    "tags": [
+      "dark",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_triumphant_heroic",
+    "name": "Triumphant and heroic",
+    "tags": [
+      "combat",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_serene_peaceful",
+    "name": "Serene and peaceful",
+    "tags": [
+      "nature",
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_chaotic_frantic",
+    "name": "Chaotic and frantic",
+    "tags": [
+      "high_motion",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_romantic_tender",
+    "name": "Romantic and tender",
+    "tags": [
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_ominous_dread",
+    "name": "Ominous and dread-filled",
+    "tags": [
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_nostalgic_wistful",
+    "name": "Nostalgic and wistful",
+    "tags": [
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_vibrant_energetic",
+    "name": "Vibrant and energetic",
+    "tags": [
+      "bright",
+      "high_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_cold_clinical",
+    "name": "Cold and clinical",
+    "tags": [
+      "futuristic",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_whimsical_dreamlike",
+    "name": "Whimsical and dreamlike",
+    "tags": [
+      "magic",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_gritty_hardedged",
+    "name": "Gritty and hard-edged",
+    "tags": [
+      "urban",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_hopeful_inspiring",
+    "name": "Hopeful and inspiring",
+    "tags": [
+      "bright",
+      "daylight"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_somber_reflective",
+    "name": "Somber and reflective",
+    "tags": [
+      "low_motion",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_electric_rebellious",
+    "name": "Electric and rebellious",
+    "tags": [
+      "neon",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_defiant_rebellious",
+    "name": "Defiant and rebellious",
+    "tags": [
+      "combat",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_cozy_comforting",
+    "name": "Cozy and comforting",
+    "tags": [
+      "interior-domestic",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_frantic_urgent",
+    "name": "Frantic and urgent",
+    "tags": [
+      "high_motion",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_dreamy_surreal",
+    "name": "Dreamy and surreal",
+    "tags": [
+      "magic",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_stoic_resolute",
+    "name": "Stoic and resolute",
+    "tags": [
+      "tactical",
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_joyful_celebratory",
+    "name": "Joyful and celebratory",
+    "tags": [
+      "bright",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_haunting_desolate",
+    "name": "Haunting and desolate",
+    "tags": [
+      "dark",
+      "ruins"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_adventurous_bold",
+    "name": "Adventurous and bold",
+    "tags": [
+      "outdoor",
+      "high_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_tender_vulnerable",
+    "name": "Tender and vulnerable",
+    "tags": [
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "mood_sinister_threatening",
+    "name": "Sinister and threatening",
+    "tags": [
+      "dark",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  }
+]

@@ -1,0 +1,303 @@
+[
+  {
+    "id": "sec_cyan_storefront_spill",
+    "name": "Cyan spill light from a storefront window",
+    "tags": [
+      "neon",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_amber_streetlamp",
+    "name": "Warm amber fill from streetlamps",
+    "tags": [
+      "night",
+      "urban"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_soft_blue_ambient",
+    "name": "Soft blue ambient fill",
+    "tags": [
+      "dark",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_purple_underglow",
+    "name": "Purple neon underglow",
+    "tags": [
+      "neon",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_firefly_glow",
+    "name": "Faint firefly glow accents",
+    "tags": [
+      "nature",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_wet_pavement_bounce",
+    "name": "Rim light bounce from wet pavement",
+    "tags": [
+      "wet",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_green_screen_fill",
+    "name": "Subtle green screen-light fill",
+    "tags": [
+      "futuristic",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_campfire_ember",
+    "name": "Warm campfire ember glow",
+    "tags": [
+      "dark",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_underwater_caustic",
+    "name": "Cool underwater caustic light",
+    "tags": [
+      "aquatic",
+      "underwater"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_rune_glow",
+    "name": "Faint magical rune glow",
+    "tags": [
+      "magic",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_sand_bounce",
+    "name": "Soft bounce light from sand",
+    "tags": [
+      "desert",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_city_glow_distant",
+    "name": "Distant city light glow",
+    "tags": [
+      "urban",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_candle_fill",
+    "name": "Gentle candle fill light",
+    "tags": [
+      "dark",
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_neon_red_accent",
+    "name": "Neon red accent glow",
+    "tags": [
+      "neon",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_moonlight_fill",
+    "name": "Faint moonlight fill on shadows",
+    "tags": [
+      "night",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_fireplace_bounce",
+    "name": "Warm fireplace bounce light",
+    "tags": [
+      "interior-domestic",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_hallway_spill",
+    "name": "Cool fluorescent spill from a hallway",
+    "tags": [
+      "indoor",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_bioluminescent_accent",
+    "name": "Subtle bioluminescent accent",
+    "tags": [
+      "aquatic",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_explosion_rim",
+    "name": "Soft rim light from distant explosion",
+    "tags": [
+      "combat",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_aurora_glow",
+    "name": "Faint aurora-like ambient glow",
+    "tags": [
+      "cold",
+      "snow",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_pink_neon_fill",
+    "name": "Soft pink fill from a neon sign",
+    "tags": [
+      "neon",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_golden_sand_bounce",
+    "name": "Gentle golden bounce off sand",
+    "tags": [
+      "desert",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_teal_screen_spill",
+    "name": "Cool teal spill from a screen",
+    "tags": [
+      "futuristic",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_orange_lantern_glow",
+    "name": "Warm orange glow from a lantern",
+    "tags": [
+      "dark",
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_starlight_fill",
+    "name": "Faint white starlight fill",
+    "tags": [
+      "night",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_violet_ambient_wash",
+    "name": "Soft violet ambient wash",
+    "tags": [
+      "neon",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_blue_underwater_shimmer",
+    "name": "Gentle blue underwater shimmer",
+    "tags": [
+      "aquatic",
+      "underwater"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_ember_red_accent",
+    "name": "Warm ember-red accent glow",
+    "tags": [
+      "dark",
+      "hot"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_cyan_ice_reflection",
+    "name": "Cool cyan reflection off ice",
+    "tags": [
+      "cold",
+      "snow"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "sec_green_biolum_fill",
+    "name": "Faint green bioluminescent fill",
+    "tags": [
+      "aquatic",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  }
+]

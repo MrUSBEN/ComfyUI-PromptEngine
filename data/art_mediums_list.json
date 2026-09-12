@@ -1,0 +1,292 @@
+[
+  {
+    "id": "medium_cinematic_digital_painting",
+    "name": "Cinematic digital painting",
+    "tags": [
+      "modern",
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_photorealistic",
+    "name": "Photorealistic render",
+    "tags": [
+      "modern",
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_oil_painting",
+    "name": "Oil painting texture",
+    "tags": [
+      "vintage",
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_watercolor",
+    "name": "Watercolor illustration",
+    "tags": [
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_anime_cel",
+    "name": "Anime-style cel shading",
+    "tags": [
+      "modern"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_concept_matte_painting",
+    "name": "Concept art matte painting",
+    "tags": [
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_charcoal_sketch",
+    "name": "Charcoal sketch texture",
+    "tags": [
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_3d_render",
+    "name": "3D rendered cinematic still",
+    "tags": [
+      "futuristic",
+      "sci-fi",
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_ink_illustration",
+    "name": "Ink illustration with heavy line work",
+    "tags": [
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_vintage_film_photo",
+    "name": "Vintage film photography grain",
+    "tags": [
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_comic_book",
+    "name": "Comic book graphic style",
+    "tags": [
+      "modern"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_ukiyo_e",
+    "name": "Ukiyo-e woodblock print style",
+    "tags": [
+      "ancient"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_hyperdetailed_fantasy",
+    "name": "Hyper-detailed digital fantasy art",
+    "tags": [
+      "magic",
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_pixel_art",
+    "name": "Pixel art retro style",
+    "tags": [
+      "vintage",
+      "modern"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_gouache",
+    "name": "Gouache illustration",
+    "tags": [
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_ghibli_painterly",
+    "name": "Studio Ghibli-inspired painterly style",
+    "tags": [
+      "nature",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_noir_film_still",
+    "name": "Noir black-and-white film still",
+    "tags": [
+      "vintage",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_cyberpunk_digital",
+    "name": "Cyberpunk neon-lit digital art",
+    "tags": [
+      "futuristic",
+      "neon"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_renaissance_portrait",
+    "name": "Renaissance-style oil portraiture",
+    "tags": [
+      "ancient",
+      "medieval"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_low_poly",
+    "name": "Low-poly stylized render",
+    "tags": [
+      "modern"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_airbrush_retro_poster",
+    "name": "Airbrushed retro poster art",
+    "tags": [
+      "vintage",
+      "neon"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_grimdark_fantasy",
+    "name": "Dark fantasy grimdark illustration",
+    "tags": [
+      "dark",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_pastel_storybook",
+    "name": "Soft pastel storybook illustration",
+    "tags": [
+      "bright",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_hardsurface_scifi",
+    "name": "Hard-surface sci-fi concept art",
+    "tags": [
+      "futuristic",
+      "sci-fi"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_vintage_travel_poster",
+    "name": "Vintage travel poster illustration",
+    "tags": [
+      "vintage",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_graphic_novel_ink",
+    "name": "Bold graphic novel ink style",
+    "tags": [
+      "modern",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_ethereal_fantasy_digital",
+    "name": "Ethereal fantasy digital painting",
+    "tags": [
+      "magic",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_retro_pulp_scifi",
+    "name": "Retro sci-fi pulp illustration",
+    "tags": [
+      "vintage",
+      "sci-fi"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_minimalist_vector",
+    "name": "Minimalist flat vector illustration",
+    "tags": [
+      "modern"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "medium_impasto_oil",
+    "name": "Textured impasto oil style",
+    "tags": [
+      "vintage",
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  }
+]

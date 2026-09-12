@@ -1,0 +1,307 @@
+[
+  {
+    "id": "prop_neon_sign",
+    "name": "Flickering neon shop sign",
+    "tags": [
+      "urban",
+      "neon",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_puddle_reflection",
+    "name": "Puddled street reflections",
+    "tags": [
+      "wet",
+      "urban"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_paper_lanterns",
+    "name": "Floating paper lanterns",
+    "tags": [
+      "night",
+      "ancient",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_steam_vent",
+    "name": "Rising steam from vents",
+    "tags": [
+      "urban",
+      "wet"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_hanging_vines",
+    "name": "Tangled hanging vines",
+    "tags": [
+      "nature",
+      "forest"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_broken_machinery",
+    "name": "Rusted broken machinery",
+    "tags": [
+      "ruins",
+      "interior-industrial"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_market_stalls",
+    "name": "Crowded market stalls",
+    "tags": [
+      "urban",
+      "daylight"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_holo_billboard",
+    "name": "Holographic advertisement billboards",
+    "tags": [
+      "futuristic",
+      "sci-fi",
+      "night",
+      "neon"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_autumn_leaves",
+    "name": "Scattered autumn leaves",
+    "tags": [
+      "nature",
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_campfire",
+    "name": "Crackling campfire",
+    "tags": [
+      "outdoor",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_sand_debris",
+    "name": "Drifting sand dune debris",
+    "tags": [
+      "desert",
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_stone_statues",
+    "name": "Weathered stone statues",
+    "tags": [
+      "ancient",
+      "ruins"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_power_cables",
+    "name": "Tangled power cables",
+    "tags": [
+      "urban",
+      "futuristic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_jellyfish_lights",
+    "name": "Floating jellyfish lights",
+    "tags": [
+      "aquatic",
+      "underwater",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_cobblestone",
+    "name": "Cracked cobblestone pavement",
+    "tags": [
+      "medieval",
+      "ancient"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_overturned_cart",
+    "name": "Overturned market cart",
+    "tags": [
+      "urban",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_laundry_lines",
+    "name": "Hanging laundry lines",
+    "tags": [
+      "urban",
+      "interior-domestic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_broken_glass",
+    "name": "Broken glass shards",
+    "tags": [
+      "urban",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_glowing_crystals",
+    "name": "Glowing crystal formations",
+    "tags": [
+      "magic",
+      "subterranean"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_rusted_vehicles",
+    "name": "Abandoned rusted vehicles",
+    "tags": [
+      "ruins",
+      "modern"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_ceremonial_banners",
+    "name": "Draped ceremonial banners",
+    "tags": [
+      "medieval",
+      "ancient"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_cherry_blossoms",
+    "name": "Scattered cherry blossom petals",
+    "tags": [
+      "nature",
+      "ancient"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_fishing_nets",
+    "name": "Tangled fishing nets",
+    "tags": [
+      "coastal",
+      "wet"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_sparking_wires",
+    "name": "Sparking electrical wires",
+    "tags": [
+      "futuristic",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_tattered_flags",
+    "name": "Wind-torn tattered flags",
+    "tags": [
+      "outdoor",
+      "ruins"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_wooden_crates",
+    "name": "Stacked wooden crates",
+    "tags": [
+      "urban",
+      "interior-industrial"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_stone_archway",
+    "name": "Ancient stone archway",
+    "tags": [
+      "ancient",
+      "ruins"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_dust_motes",
+    "name": "Floating dust motes in light beams",
+    "tags": [
+      "indoor",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_cards_coins",
+    "name": "Scattered playing cards and coins",
+    "tags": [
+      "interior-domestic",
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "prop_vines_walls",
+    "name": "Overgrown vines on crumbling walls",
+    "tags": [
+      "ruins",
+      "nature"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  }
+]

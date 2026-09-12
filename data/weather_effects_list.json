@@ -1,0 +1,321 @@
+[
+  {
+    "id": "weather_light_drizzle",
+    "name": "Light drizzle",
+    "tags": [
+      "wet",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_thunderstorm",
+    "name": "Heavy thunderstorm",
+    "tags": [
+      "wet",
+      "dark",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_light_snow",
+    "name": "Light snowfall",
+    "tags": [
+      "snow",
+      "cold",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_blizzard",
+    "name": "Blizzard whiteout",
+    "tags": [
+      "snow",
+      "cold",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_fog",
+    "name": "Dense rolling fog",
+    "tags": [
+      "outdoor",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_heat_haze",
+    "name": "Scorching heat haze",
+    "tags": [
+      "hot",
+      "dry",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_morning_mist",
+    "name": "Gentle morning mist",
+    "tags": [
+      "outdoor",
+      "wet"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_sandstorm",
+    "name": "Sandstorm gusts",
+    "tags": [
+      "desert",
+      "dry",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_clear_night",
+    "name": "Clear starry night sky",
+    "tags": [
+      "night",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_golden_hour",
+    "name": "Golden hour sunbeams",
+    "tags": [
+      "daylight",
+      "bright",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_overcast",
+    "name": "Overcast grey skies",
+    "tags": [
+      "outdoor",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_downpour",
+    "name": "Sudden downpour",
+    "tags": [
+      "wet",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_autumn_breeze",
+    "name": "Light autumn breeze with leaves",
+    "tags": [
+      "outdoor",
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_tropical_rain",
+    "name": "Humid tropical rain",
+    "tags": [
+      "hot",
+      "wet",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_frost",
+    "name": "Freezing frost coating",
+    "tags": [
+      "cold",
+      "snow",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_ocean_fog",
+    "name": "Rolling ocean fog",
+    "tags": [
+      "coastal",
+      "wet",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_heat_lightning",
+    "name": "Heat lightning on the horizon",
+    "tags": [
+      "hot",
+      "dark",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_volcanic_ash",
+    "name": "Falling volcanic ash",
+    "tags": [
+      "hot",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_hail",
+    "name": "Light hail shower",
+    "tags": [
+      "cold",
+      "wet",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_dust_devils",
+    "name": "Dust devils swirling",
+    "tags": [
+      "desert",
+      "dry",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_rainbow",
+    "name": "Rainbow after rain",
+    "tags": [
+      "wet",
+      "bright",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_storm_clouds",
+    "name": "Static-charged storm clouds",
+    "tags": [
+      "futuristic",
+      "dark",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_dry_wind",
+    "name": "Windswept dry gusts",
+    "tags": [
+      "dry",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_freezing_rain",
+    "name": "Freezing rain glaze",
+    "tags": [
+      "cold",
+      "wet",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_calm_heat",
+    "name": "Calm windless heat",
+    "tags": [
+      "hot",
+      "dry",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_hailstorm_burst",
+    "name": "Sudden hailstorm burst",
+    "tags": [
+      "cold",
+      "wet",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_tropical_breeze",
+    "name": "Warm tropical breeze",
+    "tags": [
+      "hot",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_arctic_wind",
+    "name": "Freezing arctic wind gusts",
+    "tags": [
+      "cold",
+      "snow",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_ash_fall",
+    "name": "Light ash-fall from distant fires",
+    "tags": [
+      "hot",
+      "dark",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "weather_crisp_autumn",
+    "name": "Crisp clear autumn air",
+    "tags": [
+      "dry",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  }
+]

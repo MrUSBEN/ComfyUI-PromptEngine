@@ -1,0 +1,293 @@
+[
+  {
+    "id": "expr_confident_halfturn",
+    "name": "Sharp, confident half-turn, chin lowered",
+    "tags": [
+      "intimate",
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_startled",
+    "name": "Wide-eyed with startled alertness",
+    "tags": [
+      "high_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_soft_smile",
+    "name": "Soft, knowing smile",
+    "tags": [
+      "intimate",
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_determined_glare",
+    "name": "Fierce, determined glare",
+    "tags": [
+      "combat",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_relaxed_smile",
+    "name": "Relaxed, casual half-smile",
+    "tags": [
+      "casual",
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_tense_ready",
+    "name": "Tense shoulders, ready stance",
+    "tags": [
+      "tactical",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_downcast_gaze",
+    "name": "Gentle, downcast gaze",
+    "tags": [
+      "intimate",
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_wild_grin",
+    "name": "Wild grin mid-laughter",
+    "tags": [
+      "casual",
+      "high_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_calculating_stare",
+    "name": "Cold, calculating stare",
+    "tags": [
+      "tactical",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_breathless",
+    "name": "Breathless, exhilarated expression",
+    "tags": [
+      "high_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_serene_calm",
+    "name": "Serene, meditative calm",
+    "tags": [
+      "intimate",
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_defiant",
+    "name": "Defiant chin raised",
+    "tags": [
+      "tactical",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_playful_glance",
+    "name": "Playful sideways glance",
+    "tags": [
+      "casual",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_pained_grimace",
+    "name": "Pained grimace mid-motion",
+    "tags": [
+      "combat",
+      "high_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_awestruck",
+    "name": "Awestruck, mouth slightly open",
+    "tags": [
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_sultry_gaze",
+    "name": "Sultry, half-lidded gaze",
+    "tags": [
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_narrowed_focus",
+    "name": "Focused, narrowed eyes",
+    "tags": [
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_open_laugh",
+    "name": "Warm, open-hearted laugh",
+    "tags": [
+      "casual",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_melancholic",
+    "name": "Melancholic distant stare",
+    "tags": [
+      "low_motion",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_triumphant",
+    "name": "Triumphant fists raised",
+    "tags": [
+      "high_motion",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_nervous_glance",
+    "name": "Nervous glance over shoulder",
+    "tags": [
+      "tactical",
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_confident_smirk",
+    "name": "Confident smirk",
+    "tags": [
+      "casual",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_tearful",
+    "name": "Tearful, vulnerable expression",
+    "tags": [
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_stoic",
+    "name": "Stoic, unreadable expression",
+    "tags": [
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_ecstatic_spin",
+    "name": "Ecstatic mid-spin joy",
+    "tags": [
+      "high_motion",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_curious_tilt",
+    "name": "Curious tilted-head glance",
+    "tags": [
+      "casual",
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_exhausted_slump",
+    "name": "Exhausted slumped posture",
+    "tags": [
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_proud_bearing",
+    "name": "Proud upright bearing",
+    "tags": [
+      "tactical",
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_startled_flinch",
+    "name": "Startled backward flinch",
+    "tags": [
+      "high_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "expr_content_closed_eyes",
+    "name": "Content closed-eyed smile",
+    "tags": [
+      "intimate",
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  }
+]

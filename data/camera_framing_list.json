@@ -1,0 +1,281 @@
+[
+  {
+    "id": "framing_extreme_closeup",
+    "name": "Extreme close-up",
+    "tags": [
+      "intimate",
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_closeup",
+    "name": "Close-up portrait",
+    "tags": [
+      "intimate",
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_medium_shot",
+    "name": "Medium shot",
+    "tags": [
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_medium_wide",
+    "name": "Medium-wide shot",
+    "tags": [
+      "environment"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_full_body",
+    "name": "Full body shot",
+    "tags": [
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_wide_establishing",
+    "name": "Wide establishing shot",
+    "tags": [
+      "environment",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_extreme_wide_epic",
+    "name": "Extreme wide epic shot",
+    "tags": [
+      "environment",
+      "epic-scale"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_two_shot",
+    "name": "Two-shot framing both characters",
+    "tags": [
+      "duo"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_over_shoulder",
+    "name": "Over-the-shoulder framing",
+    "tags": [
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_tight_cropped",
+    "name": "Tight cropped detail shot",
+    "tags": [
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_rule_of_thirds",
+    "name": "Rule-of-thirds off-center framing",
+    "tags": [
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_symmetrical_centered",
+    "name": "Symmetrical centered framing",
+    "tags": [
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_dynamic_tracking",
+    "name": "Dynamic action-tracking framing",
+    "tags": [
+      "high_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_silhouette",
+    "name": "Silhouette against light framing",
+    "tags": [
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_env_small_subject",
+    "name": "Environmental wide shot with small subject",
+    "tags": [
+      "environment",
+      "epic-scale"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_close_two_shot",
+    "name": "Close two-shot intimate framing",
+    "tags": [
+      "duo",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_waist_up",
+    "name": "Waist-up medium framing",
+    "tags": [
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_profile_negative_space",
+    "name": "Profile framing with negative space",
+    "tags": [
+      "low_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_group_ensemble",
+    "name": "Group ensemble framing",
+    "tags": [
+      "group"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_macro_detail",
+    "name": "Macro detail framing on hands or face",
+    "tags": [
+      "detail",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_split_frame_duo",
+    "name": "Split-frame duo composition",
+    "tags": [
+      "duo"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_negative_space_minimal",
+    "name": "Negative space minimalist framing",
+    "tags": [
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_foreground_prop",
+    "name": "Foreground prop framing device",
+    "tags": [
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_low_waist_crop",
+    "name": "Low crop cutting at the waist",
+    "tags": [
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_full_environment_wide",
+    "name": "Full environment establishing wide",
+    "tags": [
+      "environment"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_tight_facial_closeup",
+    "name": "Tight facial close-up",
+    "tags": [
+      "intimate",
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_action_dynamic_crop",
+    "name": "Action mid-motion dynamic crop",
+    "tags": [
+      "high_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_layered_depth",
+    "name": "Layered foreground-midground-background framing",
+    "tags": [
+      "environment"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_silhouetted_wide",
+    "name": "Silhouetted wide framing",
+    "tags": [
+      "dark",
+      "environment"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "framing_centered_hero",
+    "name": "Centered hero framing",
+    "tags": [
+      "epic-scale"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  }
+]

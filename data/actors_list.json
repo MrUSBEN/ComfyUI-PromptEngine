@@ -1,0 +1,331 @@
+[
+  {
+    "id": "actor_solo_woman",
+    "name": "a lone woman",
+    "tags": [
+      "solo"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 1
+  },
+  {
+    "id": "actor_solo_man",
+    "name": "a lone man",
+    "tags": [
+      "solo"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 1
+  },
+  {
+    "id": "actor_masked_figure",
+    "name": "a masked mysterious figure",
+    "tags": [
+      "solo"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 1
+  },
+  {
+    "id": "actor_warrior",
+    "name": "a battle-worn warrior",
+    "tags": [
+      "solo",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 1
+  },
+  {
+    "id": "actor_hooded_sorceress",
+    "name": "a hooded sorceress",
+    "tags": [
+      "solo",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 1
+  },
+  {
+    "id": "actor_android",
+    "name": "a cybernetic android",
+    "tags": [
+      "solo",
+      "futuristic",
+      "sci-fi"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 1
+  },
+  {
+    "id": "actor_bounty_hunter",
+    "name": "a grizzled bounty hunter",
+    "tags": [
+      "solo",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 1
+  },
+  {
+    "id": "actor_noblewoman",
+    "name": "an elegant noblewoman",
+    "tags": [
+      "solo",
+      "medieval"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 1
+  },
+  {
+    "id": "actor_hacker",
+    "name": "a street-smart hacker",
+    "tags": [
+      "solo",
+      "modern",
+      "futuristic"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 1
+  },
+  {
+    "id": "actor_samurai",
+    "name": "a wandering samurai",
+    "tags": [
+      "solo",
+      "ancient",
+      "medieval"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 1
+  },
+  {
+    "id": "actor_diver",
+    "name": "a deep-sea diver",
+    "tags": [
+      "solo",
+      "aquatic"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 1
+  },
+  {
+    "id": "actor_fisherman",
+    "name": "a weathered old fisherman",
+    "tags": [
+      "solo",
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 1
+  },
+  {
+    "id": "actor_detective",
+    "name": "a young detective",
+    "tags": [
+      "solo",
+      "vintage",
+      "modern"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 1
+  },
+  {
+    "id": "actor_tribal_hunter",
+    "name": "a fierce tribal hunter",
+    "tags": [
+      "solo",
+      "ancient"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 1
+  },
+  {
+    "id": "actor_queen",
+    "name": "a regal queen",
+    "tags": [
+      "solo",
+      "medieval",
+      "ancient"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 1
+  },
+  {
+    "id": "actor_duo_man_woman",
+    "name": "a man and a woman",
+    "tags": [
+      "duo"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 2
+  },
+  {
+    "id": "actor_duo_two_women",
+    "name": "two women",
+    "tags": [
+      "duo"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 2
+  },
+  {
+    "id": "actor_duo_two_men",
+    "name": "two men",
+    "tags": [
+      "duo"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 2
+  },
+  {
+    "id": "actor_duo_knight_mage",
+    "name": "a knight and a mage",
+    "tags": [
+      "duo",
+      "medieval",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 2
+  },
+  {
+    "id": "actor_duo_twins",
+    "name": "twin siblings",
+    "tags": [
+      "duo"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 2
+  },
+  {
+    "id": "actor_duo_mother_daughter",
+    "name": "a mother and daughter",
+    "tags": [
+      "duo",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 2
+  },
+  {
+    "id": "actor_duo_gunslingers",
+    "name": "two rival gunslingers",
+    "tags": [
+      "duo",
+      "vintage",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 2
+  },
+  {
+    "id": "actor_duo_human_android",
+    "name": "a human and an android companion",
+    "tags": [
+      "duo",
+      "futuristic",
+      "sci-fi"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 2
+  },
+  {
+    "id": "actor_duo_dance_partners",
+    "name": "dance partners",
+    "tags": [
+      "duo",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 2
+  },
+  {
+    "id": "actor_duo_hunter_beast",
+    "name": "a hunter and their loyal beast companion",
+    "tags": [
+      "duo"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 2
+  },
+  {
+    "id": "actor_duo_soldiers",
+    "name": "two soldiers on patrol",
+    "tags": [
+      "duo",
+      "tactical",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 2
+  },
+  {
+    "id": "actor_duo_mentor_apprentice",
+    "name": "an elder mentor and young apprentice",
+    "tags": [
+      "duo"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 2
+  },
+  {
+    "id": "actor_group_adventurers",
+    "name": "a small group of adventurers",
+    "tags": [
+      "group"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 3
+  },
+  {
+    "id": "actor_crowd_city",
+    "name": "a bustling city crowd",
+    "tags": [
+      "crowd"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 0
+  },
+  {
+    "id": "actor_group_assassins",
+    "name": "a trio of masked assassins",
+    "tags": [
+      "group",
+      "combat",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": [],
+    "character_count": 3
+  }
+]

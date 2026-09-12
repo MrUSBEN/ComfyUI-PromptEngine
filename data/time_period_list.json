@@ -1,0 +1,305 @@
+[
+  {
+    "id": "time_pre_dawn",
+    "name": "Pre-dawn twilight",
+    "tags": [
+      "dark",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_sunrise",
+    "name": "Early morning sunrise",
+    "tags": [
+      "daylight",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_midday",
+    "name": "Bright midday sun",
+    "tags": [
+      "daylight",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_late_afternoon",
+    "name": "Late afternoon glow",
+    "tags": [
+      "daylight"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_sunset",
+    "name": "Golden hour sunset",
+    "tags": [
+      "daylight",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_dusk",
+    "name": "Blue hour dusk",
+    "tags": [
+      "dark",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_midnight",
+    "name": "Deep midnight",
+    "tags": [
+      "night",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_late_night",
+    "name": "Late night neon hours",
+    "tags": [
+      "night",
+      "neon",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_overcast_afternoon",
+    "name": "Overcast grey afternoon",
+    "tags": [
+      "daylight"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_foggy_morning",
+    "name": "Foggy early morning",
+    "tags": [
+      "daylight",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_stormy_afternoon",
+    "name": "Stormy dark afternoon",
+    "tags": [
+      "dark",
+      "daylight"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_moonlit_night",
+    "name": "Moonlit night",
+    "tags": [
+      "night",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_harsh_noon",
+    "name": "Harsh noon sun",
+    "tags": [
+      "daylight",
+      "bright",
+      "hot"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_summer_evening",
+    "name": "Hazy summer evening",
+    "tags": [
+      "daylight",
+      "hot"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_winter_morning",
+    "name": "Crisp winter morning",
+    "tags": [
+      "daylight",
+      "cold"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_neon_night",
+    "name": "Neon-drenched city night",
+    "tags": [
+      "night",
+      "neon"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_overnight_dawn",
+    "name": "Overnight into dawn transition",
+    "tags": [
+      "night",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_eclipse",
+    "name": "Eclipse darkened sky",
+    "tags": [
+      "dark",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_starlit_night",
+    "name": "Starlit clear night",
+    "tags": [
+      "night",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_industrial_dusk",
+    "name": "Hazy industrial dusk",
+    "tags": [
+      "dark",
+      "night",
+      "urban"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_twilight_after_sunset",
+    "name": "Twilight just after sunset",
+    "tags": [
+      "dark",
+      "daylight"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_dawn_rooftops",
+    "name": "Hazy dawn breaking over rooftops",
+    "tags": [
+      "daylight",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_deep_predawn",
+    "name": "Deep blue predawn hour",
+    "tags": [
+      "night",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_sweltering_noon",
+    "name": "Sweltering high-noon heat",
+    "tags": [
+      "daylight",
+      "hot",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_winter_dusk",
+    "name": "Cold winter dusk",
+    "tags": [
+      "cold",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_rainy_overnight",
+    "name": "Rain-soaked overnight hours",
+    "tags": [
+      "night",
+      "wet"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_late_summer_afternoon",
+    "name": "Warm late-summer afternoon",
+    "tags": [
+      "daylight",
+      "hot"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_foggy_dusk",
+    "name": "Foggy dusk transition",
+    "tags": [
+      "dark",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_snow_morning",
+    "name": "Bright reflective snow-morning",
+    "tags": [
+      "daylight",
+      "snow",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "time_industrial_midday",
+    "name": "Hazy industrial midday smog",
+    "tags": [
+      "daylight",
+      "urban"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  }
+]

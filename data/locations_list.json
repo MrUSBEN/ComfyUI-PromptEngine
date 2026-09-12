@@ -1,0 +1,410 @@
+[
+  {
+    "id": "loc_rain_alley",
+    "name": "Rain-slicked city alleyway",
+    "tags": [
+      "outdoor",
+      "urban",
+      "wet",
+      "alleyway",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_neon_rooftop",
+    "name": "Neon-lit rooftop skyline",
+    "tags": [
+      "outdoor",
+      "urban",
+      "rooftop",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_abandoned_warehouse",
+    "name": "Abandoned industrial warehouse",
+    "tags": [
+      "indoor",
+      "urban",
+      "interior-industrial",
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_misty_forest",
+    "name": "Dense misty forest",
+    "tags": [
+      "outdoor",
+      "nature",
+      "forest",
+      "wet"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_coastal_cliff",
+    "name": "Coastal cliffside",
+    "tags": [
+      "outdoor",
+      "nature",
+      "coastal"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_desert_dunes",
+    "name": "Sunlit desert dunes",
+    "tags": [
+      "outdoor",
+      "nature",
+      "desert",
+      "dry",
+      "hot"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_underwater_ruins",
+    "name": "Underwater coral ruins",
+    "tags": [
+      "aquatic",
+      "underwater",
+      "wet",
+      "ruins"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_mountain_pass",
+    "name": "Snow-covered mountain pass",
+    "tags": [
+      "outdoor",
+      "nature",
+      "mountainous",
+      "snow",
+      "cold"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_neon_market",
+    "name": "Crowded neon marketplace",
+    "tags": [
+      "outdoor",
+      "urban",
+      "night",
+      "neon"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_cathedral",
+    "name": "Grand cathedral interior",
+    "tags": [
+      "indoor",
+      "ancient"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_ancient_ruins",
+    "name": "Overgrown ancient ruins",
+    "tags": [
+      "outdoor",
+      "ancient",
+      "ruins",
+      "nature"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_space_station",
+    "name": "High-tech space station corridor",
+    "tags": [
+      "indoor",
+      "futuristic",
+      "sci-fi",
+      "space"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_train_station",
+    "name": "Bustling train station platform",
+    "tags": [
+      "indoor",
+      "urban",
+      "modern"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_farmhouse_exterior",
+    "name": "Rustic countryside farmhouse exterior",
+    "tags": [
+      "outdoor",
+      "nature"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_cabin_interior",
+    "name": "Cozy candlelit cabin interior",
+    "tags": [
+      "indoor",
+      "interior-domestic",
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_salt_flat",
+    "name": "Vast salt flat at dusk",
+    "tags": [
+      "outdoor",
+      "nature",
+      "desert",
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_noodle_stand",
+    "name": "Cyberpunk back-alley noodle stand",
+    "tags": [
+      "outdoor",
+      "urban",
+      "neon",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_castle_courtyard",
+    "name": "Crumbling castle courtyard",
+    "tags": [
+      "outdoor",
+      "medieval",
+      "ruins"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_graveyard",
+    "name": "Moonlit graveyard",
+    "tags": [
+      "outdoor",
+      "dark",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_bamboo_forest",
+    "name": "Bamboo forest pathway",
+    "tags": [
+      "outdoor",
+      "nature",
+      "forest"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_flooded_subway",
+    "name": "Flooded subway tunnel",
+    "tags": [
+      "indoor",
+      "subterranean",
+      "wet"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_volcanic_cave",
+    "name": "Volcanic cave interior",
+    "tags": [
+      "indoor",
+      "subterranean",
+      "hot",
+      "cave"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_frozen_tundra",
+    "name": "Frozen tundra expanse",
+    "tags": [
+      "outdoor",
+      "nature",
+      "snow",
+      "cold"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_rooftop_garden",
+    "name": "Rooftop garden at sunset",
+    "tags": [
+      "outdoor",
+      "urban",
+      "rooftop"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_ballroom",
+    "name": "Grand ballroom interior",
+    "tags": [
+      "indoor",
+      "interior-domestic",
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_dockside_pier",
+    "name": "Dockside pier at night",
+    "tags": [
+      "outdoor",
+      "urban",
+      "coastal",
+      "night",
+      "wet"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_jungle_temple",
+    "name": "Dense jungle temple ruins",
+    "tags": [
+      "outdoor",
+      "nature",
+      "ruins",
+      "hot"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_futuristic_highway",
+    "name": "Futuristic city skyline highway",
+    "tags": [
+      "outdoor",
+      "urban",
+      "futuristic",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_amusement_park",
+    "name": "Abandoned amusement park",
+    "tags": [
+      "outdoor",
+      "urban",
+      "ruins",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_greenhouse",
+    "name": "Sunlit greenhouse conservatory",
+    "tags": [
+      "indoor",
+      "nature",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_ocean_deck",
+    "name": "Stormy open ocean deck",
+    "tags": [
+      "outdoor",
+      "aquatic",
+      "wet"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_bunker_corridor",
+    "name": "Underground bunker corridor",
+    "tags": [
+      "indoor",
+      "subterranean",
+      "modern"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_sand_temple",
+    "name": "Sand-swept ancient temple",
+    "tags": [
+      "outdoor",
+      "desert",
+      "ancient",
+      "ruins"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_izakaya_street",
+    "name": "Busy izakaya back street",
+    "tags": [
+      "outdoor",
+      "urban",
+      "night",
+      "neon"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "loc_forge_chamber",
+    "name": "Lava-lit forge chamber",
+    "tags": [
+      "indoor",
+      "subterranean",
+      "hot",
+      "medieval"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  }
+]

@@ -1,0 +1,303 @@
+[
+  {
+    "id": "atmo_steam_vent",
+    "name": "Rising steam from a street vent",
+    "tags": [
+      "urban",
+      "wet"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_rolling_fog",
+    "name": "Drifting fog rolling through",
+    "tags": [
+      "outdoor",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_dust_particles",
+    "name": "Floating dust particles in light",
+    "tags": [
+      "indoor",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_rain_droplets",
+    "name": "Light rain droplets in the air",
+    "tags": [
+      "wet",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_sand_swirl",
+    "name": "Swirling sand particles",
+    "tags": [
+      "desert",
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_embers_sparks",
+    "name": "Drifting embers and sparks",
+    "tags": [
+      "dark",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_falling_snow",
+    "name": "Gentle falling snowflakes",
+    "tags": [
+      "snow",
+      "cold"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_smoke_tendrils",
+    "name": "Hazy smoke tendrils",
+    "tags": [
+      "dark",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_rising_bubbles",
+    "name": "Rising bubbles underwater",
+    "tags": [
+      "aquatic",
+      "underwater"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_cherry_blossom_drift",
+    "name": "Drifting cherry blossom petals",
+    "tags": [
+      "nature",
+      "ancient"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_magic_sparkles",
+    "name": "Faint magical sparkles in the air",
+    "tags": [
+      "magic",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_swirling_leaves",
+    "name": "Swirling autumn leaves in wind",
+    "tags": [
+      "nature",
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_volcanic_ash",
+    "name": "Volcanic ash drifting down",
+    "tags": [
+      "hot",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_visible_breath",
+    "name": "Misty breath visible in cold air",
+    "tags": [
+      "cold",
+      "snow"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_neon_rain_streaks",
+    "name": "Neon-lit rain streaks",
+    "tags": [
+      "neon",
+      "wet",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_drifting_pollen",
+    "name": "Drifting pollen in sunlight",
+    "tags": [
+      "nature",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_heat_shimmer",
+    "name": "Faint heat shimmer distortion",
+    "tags": [
+      "hot",
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_lantern_trails",
+    "name": "Floating lantern light trails",
+    "tags": [
+      "night",
+      "ancient"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_storm_debris",
+    "name": "Swirling storm debris",
+    "tags": [
+      "outdoor",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_glowing_spores",
+    "name": "Soft glowing spores in the forest air",
+    "tags": [
+      "nature",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_drifting_fireflies",
+    "name": "Drifting fireflies at dusk",
+    "tags": [
+      "nature",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_steam_wet_pavement",
+    "name": "Faint steam rising off wet pavement",
+    "tags": [
+      "wet",
+      "urban"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_light_haze_diffuse",
+    "name": "Light haze diffusing distant lights",
+    "tags": [
+      "night",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_windblown_dust",
+    "name": "Windblown dust across the frame",
+    "tags": [
+      "dry",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_ground_mist",
+    "name": "Gentle mist clinging to the ground",
+    "tags": [
+      "nature",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_floating_embers",
+    "name": "Floating embers rising from a fire",
+    "tags": [
+      "dark",
+      "hot"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_frost_crystals",
+    "name": "Faint frost crystals in the air",
+    "tags": [
+      "cold",
+      "snow"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_swirling_magic_mist",
+    "name": "Swirling magical mist",
+    "tags": [
+      "magic",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_neon_skyline_haze",
+    "name": "Light haze over a neon skyline",
+    "tags": [
+      "neon",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "atmo_sea_spray_drift",
+    "name": "Gentle drifting sea spray",
+    "tags": [
+      "coastal",
+      "wet"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  }
+]

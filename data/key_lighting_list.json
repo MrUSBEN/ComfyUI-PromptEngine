@@ -1,0 +1,308 @@
+[
+  {
+    "id": "key_magenta_neon_rim",
+    "name": "Magenta neon rim light from the left",
+    "tags": [
+      "neon",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_golden_sunset",
+    "name": "Warm golden sunset key light",
+    "tags": [
+      "daylight",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_fluorescent_overhead",
+    "name": "Harsh overhead fluorescent light",
+    "tags": [
+      "indoor",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_soft_window",
+    "name": "Soft window light from the side",
+    "tags": [
+      "indoor",
+      "daylight"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_single_spotlight",
+    "name": "Dramatic single spotlight",
+    "tags": [
+      "dark",
+      "indoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_blue_moonlight",
+    "name": "Cool blue moonlight",
+    "tags": [
+      "night",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_candlelight",
+    "name": "Flickering candlelight glow",
+    "tags": [
+      "dark",
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_midday_sun",
+    "name": "Bright midday sun overhead",
+    "tags": [
+      "daylight",
+      "bright",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_cyan_storefront",
+    "name": "Neon cyan wash from storefront",
+    "tags": [
+      "neon",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_backlit_silhouette",
+    "name": "Backlit silhouette rim light",
+    "tags": [
+      "dark",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_diffused_overcast",
+    "name": "Soft diffused overcast light",
+    "tags": [
+      "outdoor",
+      "daylight"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_firelight",
+    "name": "Warm firelight glow",
+    "tags": [
+      "dark",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_interrogation",
+    "name": "Harsh interrogation room light",
+    "tags": [
+      "indoor",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_golden_rim",
+    "name": "Golden hour rim lighting",
+    "tags": [
+      "daylight",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_neon_pink_purple",
+    "name": "Neon pink and purple gradient wash",
+    "tags": [
+      "neon",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_clinical_white",
+    "name": "Cold clinical white light",
+    "tags": [
+      "indoor",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_dappled_sunlight",
+    "name": "Dappled sunlight through leaves",
+    "tags": [
+      "nature",
+      "daylight"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_torchlit_cave",
+    "name": "Torchlit cave glow",
+    "tags": [
+      "subterranean",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_stage_spotlight",
+    "name": "Bright stage spotlight",
+    "tags": [
+      "indoor",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_bioluminescent",
+    "name": "Soft bioluminescent underwater glow",
+    "tags": [
+      "aquatic",
+      "underwater",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_desert_glare",
+    "name": "Harsh desert sun glare",
+    "tags": [
+      "dry",
+      "hot",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_office_fluorescent",
+    "name": "Cool fluorescent office lighting",
+    "tags": [
+      "indoor",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_hearth_glow",
+    "name": "Warm hearth glow",
+    "tags": [
+      "interior-domestic",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_storm_flash",
+    "name": "Electric storm flash lighting",
+    "tags": [
+      "dark",
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_studio_soft",
+    "name": "Soft studio key light",
+    "tags": [
+      "indoor",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_neon_green_industrial",
+    "name": "Neon green industrial glow",
+    "tags": [
+      "neon",
+      "night",
+      "interior-industrial"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_twilight_blue",
+    "name": "Twilight blue hour glow",
+    "tags": [
+      "night",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_lantern_fog",
+    "name": "Warm lantern light in fog",
+    "tags": [
+      "dark",
+      "outdoor",
+      "wet"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_ice_cave_glow",
+    "name": "Reflective ice-cave glow",
+    "tags": [
+      "cold",
+      "snow",
+      "subterranean"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "key_teal_orange_cinematic",
+    "name": "Cinematic teal and orange key light",
+    "tags": [
+      "night",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  }
+]

@@ -1,0 +1,286 @@
+[
+  {
+    "id": "lens_35mm_shallow",
+    "name": "35mm, shallow depth of field",
+    "tags": [
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "lens_85mm_bokeh",
+    "name": "85mm portrait lens, soft bokeh",
+    "tags": [
+      "intimate",
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "lens_24mm_wide",
+    "name": "Wide-angle 24mm distortion",
+    "tags": [
+      "environment"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "lens_macro",
+    "name": "Macro lens, extreme detail",
+    "tags": [
+      "detail",
+      "macro"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "lens_telephoto",
+    "name": "Telephoto compression effect",
+    "tags": [
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_chromatic_aberration",
+    "name": "Slight chromatic aberration",
+    "tags": [
+      "night",
+      "futuristic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_lens_flare",
+    "name": "Lens flare from key light",
+    "tags": [
+      "bright",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_film_grain",
+    "name": "Film grain texture",
+    "tags": [
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_motion_blur",
+    "name": "Motion blur on fast movement",
+    "tags": [
+      "high_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_anamorphic_flare",
+    "name": "Anamorphic lens flare streaks",
+    "tags": [
+      "night",
+      "neon"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_soft_vignette",
+    "name": "Soft vignette framing",
+    "tags": [
+      "intimate",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_long_exposure_trails",
+    "name": "Long exposure light trails",
+    "tags": [
+      "night",
+      "high_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_tilt_shift",
+    "name": "Tilt-shift miniature effect",
+    "tags": [
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_fisheye",
+    "name": "Fisheye distortion",
+    "tags": [
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_bloom_lighting",
+    "name": "Bloom lighting effect around highlights",
+    "tags": [
+      "neon",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_rack_focus",
+    "name": "Rack focus shift",
+    "tags": [
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "lens_deep_dof",
+    "name": "Deep depth of field, everything sharp",
+    "tags": [
+      "environment"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_diffusion_glow",
+    "name": "Soft diffusion glow filter",
+    "tags": [
+      "intimate",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_high_contrast_clarity",
+    "name": "High contrast crisp clarity",
+    "tags": [
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_double_exposure",
+    "name": "Double exposure ghosting effect",
+    "tags": [
+      "magic",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_soft_focus_dream",
+    "name": "Soft focus dreamlike blur",
+    "tags": [
+      "magic",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "lens_sharp_macro",
+    "name": "Sharp crisp macro detail",
+    "tags": [
+      "detail",
+      "macro"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_halation_glow",
+    "name": "Warm halation glow around lights",
+    "tags": [
+      "night",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_grain_light_leak",
+    "name": "Subtle grain and light leak",
+    "tags": [
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_deep_shadow_contrast",
+    "name": "Deep shadow contrast lighting",
+    "tags": [
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_crystal_clarity",
+    "name": "Crystal-clear high resolution clarity",
+    "tags": [
+      "detail"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_dreamy_double_exposure",
+    "name": "Dreamy double-exposure overlay",
+    "tags": [
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_rim_edge_definition",
+    "name": "Sharp rim-light edge definition",
+    "tags": [
+      "dark",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "lens_barrel_distortion",
+    "name": "Slight barrel distortion wide lens",
+    "tags": [
+      "environment"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "fx_painterly_bokeh",
+    "name": "Painterly soft bokeh background",
+    "tags": [
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  }
+]

@@ -1,0 +1,396 @@
+[
+  {
+    "id": "action_look_back_solo",
+    "name": "Looking back over one shoulder while walking away",
+    "tags": [
+      "low_motion",
+      "solo",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_sprint_solo",
+    "name": "Running at full sprint",
+    "tags": [
+      "high_motion",
+      "solo",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_leap_gap",
+    "name": "Leaping across a gap mid-air",
+    "tags": [
+      "high_motion",
+      "solo",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_power_pose",
+    "name": "Standing in a confident power pose",
+    "tags": [
+      "low_motion",
+      "solo",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_draw_weapon",
+    "name": "Drawing a weapon in a fluid motion",
+    "tags": [
+      "high_motion",
+      "solo",
+      "combat",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_lean_wall",
+    "name": "Leaning against a wall, arms crossed",
+    "tags": [
+      "low_motion",
+      "solo",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_crouch_tactical",
+    "name": "Crouching low in tactical stance",
+    "tags": [
+      "low_motion",
+      "solo",
+      "tactical",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_dance_rain",
+    "name": "Dancing freely in the rain",
+    "tags": [
+      "high_motion",
+      "solo",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_reach_hand",
+    "name": "Reaching a hand out toward the viewer",
+    "tags": [
+      "low_motion",
+      "solo",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_walk_corridor",
+    "name": "Walking confidently down a corridor",
+    "tags": [
+      "low_motion",
+      "solo",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_staredown_duo",
+    "name": "Two figures locked in an intense stare-down",
+    "tags": [
+      "low_motion",
+      "duo",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_waltz_duo",
+    "name": "Couple dancing an intimate waltz",
+    "tags": [
+      "low_motion",
+      "duo",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_clash_strike",
+    "name": "Two fighters clashing mid-strike",
+    "tags": [
+      "high_motion",
+      "duo",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_handinhand",
+    "name": "Hand-in-hand walking together",
+    "tags": [
+      "low_motion",
+      "duo",
+      "intimate",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_back_to_back",
+    "name": "Back-to-back defensive stance",
+    "tags": [
+      "low_motion",
+      "duo",
+      "tactical",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_shield_ally",
+    "name": "One character shielding another",
+    "tags": [
+      "high_motion",
+      "duo",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_whisper_secret",
+    "name": "Whispering a secret closely",
+    "tags": [
+      "low_motion",
+      "duo",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_playful_chase",
+    "name": "Playful chase through a crowd",
+    "tags": [
+      "high_motion",
+      "duo",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_embrace",
+    "name": "Sharing a quiet embrace",
+    "tags": [
+      "low_motion",
+      "duo",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_sparring",
+    "name": "Sparring practice exchange",
+    "tags": [
+      "high_motion",
+      "duo",
+      "combat",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_climb_incline",
+    "name": "Climbing a steep rocky incline",
+    "tags": [
+      "high_motion",
+      "solo",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_sit_contemplation",
+    "name": "Sitting alone in quiet contemplation",
+    "tags": [
+      "low_motion",
+      "solo",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_fire_weapon",
+    "name": "Firing a weapon mid-motion",
+    "tags": [
+      "high_motion",
+      "solo",
+      "combat",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_swim_glide",
+    "name": "Gliding through water in a smooth swim",
+    "tags": [
+      "high_motion",
+      "solo",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_cast_spell",
+    "name": "Casting a glowing spell",
+    "tags": [
+      "high_motion",
+      "solo",
+      "magic",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_carry_wounded",
+    "name": "Carrying a wounded companion",
+    "tags": [
+      "high_motion",
+      "duo",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_toast_drinks",
+    "name": "Toasting drinks together",
+    "tags": [
+      "low_motion",
+      "duo",
+      "casual",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_vault_obstacle",
+    "name": "Vaulting over an obstacle",
+    "tags": [
+      "high_motion",
+      "solo",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_adjust_gear",
+    "name": "Adjusting gear before a mission",
+    "tags": [
+      "low_motion",
+      "solo",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_silhouette_explosion",
+    "name": "Silhouetted against a rising explosion",
+    "tags": [
+      "high_motion",
+      "solo",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_circling_rivals",
+    "name": "Two rivals circling each other warily",
+    "tags": [
+      "low_motion",
+      "duo",
+      "tactical",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_comfort_companion",
+    "name": "Comforting a crying companion",
+    "tags": [
+      "low_motion",
+      "duo",
+      "intimate"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_ride_motorcycle",
+    "name": "Riding a motorcycle at speed",
+    "tags": [
+      "high_motion",
+      "solo",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_balance_ledge",
+    "name": "Balancing carefully on a narrow ledge",
+    "tags": [
+      "low_motion",
+      "solo",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "action_acrobatic_duo",
+    "name": "Synchronized acrobatic duo mid-flip",
+    "tags": [
+      "high_motion",
+      "duo",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  }
+]

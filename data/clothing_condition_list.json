@@ -1,0 +1,284 @@
+[
+  {
+    "id": "condition_damp_rain",
+    "name": "Damp from light rain, fabric clinging slightly",
+    "tags": [
+      "wet"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_torn_battle",
+    "name": "Torn and battle-worn",
+    "tags": [
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_pristine",
+    "name": "Pristine and freshly pressed",
+    "tags": [
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_dust_covered",
+    "name": "Dust-covered from travel",
+    "tags": [
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_soaked",
+    "name": "Soaked through from a downpour",
+    "tags": [
+      "wet"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_frost_covered",
+    "name": "Frost-covered and stiff with cold",
+    "tags": [
+      "cold",
+      "snow"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_windswept",
+    "name": "Windswept and loosely fluttering",
+    "tags": [
+      "outdoor"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_scorched",
+    "name": "Scorched at the edges",
+    "tags": [
+      "hot",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_mud_splattered",
+    "name": "Mud-splattered from a struggle",
+    "tags": [
+      "wet",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_sun_bleached",
+    "name": "Sun-bleached and worn thin",
+    "tags": [
+      "hot",
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_tailored",
+    "name": "Freshly tailored and formal",
+    "tags": [
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_sweat_soaked",
+    "name": "Sweat-soaked from exertion",
+    "tags": [
+      "high_motion"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_sand_crusted",
+    "name": "Sand-crusted from the dunes",
+    "tags": [
+      "desert",
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_singed",
+    "name": "Slightly singed from sparks",
+    "tags": [
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_rain_slicked",
+    "name": "Rain-slicked and glistening",
+    "tags": [
+      "wet",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_neatly_buttoned",
+    "name": "Neatly buttoned and composed",
+    "tags": [
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_salt_stained",
+    "name": "Salt-stained from sea spray",
+    "tags": [
+      "coastal",
+      "wet"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_wrinkled_journey",
+    "name": "Wrinkled from a long journey",
+    "tags": [
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_blood_flecked",
+    "name": "Blood-flecked from battle",
+    "tags": [
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_glowing_magic",
+    "name": "Glowing faintly with residual magic",
+    "tags": [
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_freshly_laundered",
+    "name": "Freshly laundered and crisp",
+    "tags": [
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_dew_dampened",
+    "name": "Dew-dampened at dawn",
+    "tags": [
+      "wet",
+      "daylight"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_ash_dusted",
+    "name": "Ash-dusted from fire nearby",
+    "tags": [
+      "hot",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_ice_crusted_hem",
+    "name": "Ice-crusted at the hem",
+    "tags": [
+      "cold",
+      "snow"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_loosely_draped",
+    "name": "Loosely draped and casual",
+    "tags": [
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_weathered_faded",
+    "name": "Weathered and sun-faded",
+    "tags": [
+      "hot",
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_repaired_stitching",
+    "name": "Freshly repaired with visible stitching",
+    "tags": [
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_perfumed_immaculate",
+    "name": "Perfumed and immaculate",
+    "tags": [
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_rumpled_travel",
+    "name": "Rumpled from travel",
+    "tags": [
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "condition_sea_spray_glisten",
+    "name": "Glistening with sea spray",
+    "tags": [
+      "coastal",
+      "wet"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  }
+]

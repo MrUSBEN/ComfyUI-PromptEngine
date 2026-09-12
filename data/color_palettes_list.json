@@ -1,0 +1,298 @@
+[
+  {
+    "id": "palette_magenta_cyan_indigo",
+    "name": "Magenta, cyan, deep indigo",
+    "tags": [
+      "neon",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_amber_brown",
+    "name": "Warm amber and deep brown",
+    "tags": [
+      "vintage",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_blue_silver",
+    "name": "Cool blues and silvery whites",
+    "tags": [
+      "cold",
+      "snow"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_earthy_green_brown",
+    "name": "Earthy greens and browns",
+    "tags": [
+      "nature"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_sepia",
+    "name": "Muted sepia tones",
+    "tags": [
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_orange_red_sunset",
+    "name": "Vivid orange and red sunset hues",
+    "tags": [
+      "daylight",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_purple_black",
+    "name": "Deep purples and blacks",
+    "tags": [
+      "dark",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_pastel_pink_lavender",
+    "name": "Pastel pinks and lavender",
+    "tags": [
+      "bright",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_monochrome",
+    "name": "Stark monochrome black and white",
+    "tags": [
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_golden_ochre",
+    "name": "Golden yellows and warm ochres",
+    "tags": [
+      "hot",
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_teal_orange",
+    "name": "Teal and burnt orange cinematic",
+    "tags": [
+      "night",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_icy_blue_white",
+    "name": "Icy blues and whites",
+    "tags": [
+      "cold",
+      "snow"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_crimson_gold",
+    "name": "Deep crimson and gold",
+    "tags": [
+      "ancient",
+      "medieval"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_electric_green_black",
+    "name": "Electric green and black",
+    "tags": [
+      "futuristic",
+      "neon"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_desaturated_gray",
+    "name": "Soft desaturated grays",
+    "tags": [
+      "dark",
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_turquoise_coral",
+    "name": "Turquoise and coral tropical hues",
+    "tags": [
+      "hot",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_ocean_blue_teal",
+    "name": "Deep ocean blues and teals",
+    "tags": [
+      "aquatic",
+      "underwater"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_firelit_orange_red",
+    "name": "Warm firelit oranges and reds",
+    "tags": [
+      "dark",
+      "hot"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_olive_khaki",
+    "name": "Muted olive and khaki tones",
+    "tags": [
+      "dry",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_neon_violet_pink",
+    "name": "Neon violet and hot pink",
+    "tags": [
+      "neon",
+      "night"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_forest_green_moss",
+    "name": "Deep forest greens and mossy browns",
+    "tags": [
+      "nature"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_cyan_hotpink",
+    "name": "Bright cyan and hot pink",
+    "tags": [
+      "neon",
+      "bright"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_terracotta_sand",
+    "name": "Warm terracotta and sand tones",
+    "tags": [
+      "desert",
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_slate_steel_blue",
+    "name": "Cool slate grays and steel blues",
+    "tags": [
+      "futuristic",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_burgundy_gold",
+    "name": "Rich burgundy and gold accents",
+    "tags": [
+      "medieval",
+      "ancient"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_mint_cream",
+    "name": "Soft mint and cream tones",
+    "tags": [
+      "bright",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_navy_silver",
+    "name": "Deep navy and silver",
+    "tags": [
+      "night",
+      "futuristic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_rust_copper",
+    "name": "Warm rust and copper hues",
+    "tags": [
+      "vintage",
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_icy_white_cyan",
+    "name": "Icy white and pale cyan",
+    "tags": [
+      "cold",
+      "snow"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "palette_tropical_green_turquoise",
+    "name": "Vivid tropical greens and turquoise",
+    "tags": [
+      "hot",
+      "nature"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  }
+]

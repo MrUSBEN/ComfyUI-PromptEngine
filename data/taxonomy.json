@@ -1,0 +1,71 @@
+{
+  "Environment Scope": [
+    "indoor",
+    "outdoor",
+    "urban",
+    "nature",
+    "aquatic",
+    "space",
+    "subterranean"
+  ],
+  "Climate & Condition": [
+    "dry",
+    "wet",
+    "snow",
+    "underwater",
+    "hot",
+    "cold"
+  ],
+  "Era & Tech Level": [
+    "ancient",
+    "medieval",
+    "vintage",
+    "modern",
+    "futuristic",
+    "sci-fi",
+    "magic"
+  ],
+  "Lighting Level": [
+    "bright",
+    "dark",
+    "neon",
+    "daylight",
+    "night"
+  ],
+  "Motion & Energy": [
+    "high_motion",
+    "low_motion",
+    "intimate",
+    "tactical",
+    "casual",
+    "combat"
+  ],
+  "Terrain / Setting Type": [
+    "rooftop",
+    "coastal",
+    "forest",
+    "desert",
+    "mountainous",
+    "interior-domestic",
+    "interior-industrial",
+    "ruins",
+    "alleyway",
+    "cave"
+  ],
+  "Social Context": [
+    "solo",
+    "duo",
+    "group",
+    "crowd"
+  ],
+  "Scale / Perspective": [
+    "intimate-scale",
+    "human-scale",
+    "epic-scale"
+  ],
+  "Detail Level": [
+    "detail",
+    "macro",
+    "environment"
+  ]
+}

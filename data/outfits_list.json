@@ -1,0 +1,363 @@
+[
+  {
+    "id": "outfit_neon_bomber",
+    "name": "Neon-trimmed bomber jacket over mesh top",
+    "tags": [
+      "modern",
+      "futuristic",
+      "neon"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_trench_coat",
+    "name": "Leather trench coat with high collar",
+    "tags": [
+      "vintage",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_plate_armor",
+    "name": "Ornate medieval plate armor",
+    "tags": [
+      "medieval",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_ceremonial_robes",
+    "name": "Flowing silk ceremonial robes",
+    "tags": [
+      "ancient",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_tactical_vest",
+    "name": "Tactical combat vest and cargo pants",
+    "tags": [
+      "modern",
+      "tactical",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_exosuit",
+    "name": "Futuristic form-fitting exosuit",
+    "tags": [
+      "futuristic",
+      "sci-fi"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_desert_cloak",
+    "name": "Rugged desert wanderer cloak",
+    "tags": [
+      "dry",
+      "hot",
+      "ancient"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_victorian_gown",
+    "name": "Elegant Victorian ball gown",
+    "tags": [
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_cyber_streetwear",
+    "name": "Cybernetic augmented streetwear",
+    "tags": [
+      "futuristic",
+      "sci-fi",
+      "urban"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_samurai_armor",
+    "name": "Traditional samurai armor",
+    "tags": [
+      "ancient",
+      "medieval",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_fur_coat",
+    "name": "Thick fur-lined winter coat",
+    "tags": [
+      "cold",
+      "snow"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_wetsuit",
+    "name": "Wetsuit with diving gear",
+    "tags": [
+      "aquatic",
+      "underwater",
+      "wet"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_denim_casual",
+    "name": "Casual denim jacket and boots",
+    "tags": [
+      "modern",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_steampunk_corset",
+    "name": "Steampunk brass-fitted corset and coat",
+    "tags": [
+      "vintage",
+      "sci-fi"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_sorceress_gown",
+    "name": "Flowing fantasy sorceress gown",
+    "tags": [
+      "medieval",
+      "magic"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_wasteland_gear",
+    "name": "Rugged wasteland survivor gear",
+    "tags": [
+      "modern",
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_flight_suit",
+    "name": "Pilot flight suit with harness",
+    "tags": [
+      "modern",
+      "futuristic",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_kimono",
+    "name": "Traditional kimono with obi sash",
+    "tags": [
+      "ancient"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_space_suit",
+    "name": "Sleek space explorer suit",
+    "tags": [
+      "futuristic",
+      "sci-fi",
+      "space"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_post_apoc_rags",
+    "name": "Ragged post-apocalyptic patched clothing",
+    "tags": [
+      "modern",
+      "dry"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_tuxedo",
+    "name": "Formal tuxedo",
+    "tags": [
+      "modern",
+      "vintage"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_assassin_cloak",
+    "name": "Assassin's fitted black cloak",
+    "tags": [
+      "medieval",
+      "combat",
+      "tactical"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_cropped_leather",
+    "name": "Cropped leather jacket with reflective piping",
+    "tags": [
+      "modern",
+      "futuristic",
+      "neon"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_nomad_wraps",
+    "name": "Layered nomadic desert wraps",
+    "tags": [
+      "dry",
+      "hot"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_royal_cape",
+    "name": "Royal ornate cape and crown",
+    "tags": [
+      "medieval",
+      "ancient"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_tactical_exosuit",
+    "name": "High-tech tactical exosuit armor",
+    "tags": [
+      "futuristic",
+      "sci-fi",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_bohemian_dress",
+    "name": "Bohemian flowing summer dress",
+    "tags": [
+      "modern",
+      "casual",
+      "hot"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_explorer_parka",
+    "name": "Heavy winter explorer parka",
+    "tags": [
+      "cold",
+      "snow"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_gothic_lace",
+    "name": "Gothic Victorian lace dress",
+    "tags": [
+      "vintage",
+      "dark"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_ranger_cloak",
+    "name": "Hooded ranger's woodland cloak",
+    "tags": [
+      "nature",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_tropical_resort",
+    "name": "Bright tropical resort wear",
+    "tags": [
+      "hot",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_gladiator_armor",
+    "name": "Battle-scarred gladiator armor",
+    "tags": [
+      "ancient",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_business_suit",
+    "name": "Sleek corporate business suit",
+    "tags": [
+      "modern",
+      "urban"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_rune_robes",
+    "name": "Mystical rune-etched battle robes",
+    "tags": [
+      "magic",
+      "combat"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  },
+  {
+    "id": "outfit_street_racer",
+    "name": "Street racer's fitted jacket and gloves",
+    "tags": [
+      "modern",
+      "neon",
+      "casual"
+    ],
+    "required_tags": [],
+    "exclude_tags": []
+  }
+]
