@@ -5,6 +5,7 @@ from .nodes import NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS, DATA_DIR
 from .taxonomy import load_taxonomy, save_taxonomy, add_tag, add_category, rename_tag_in_taxonomy, delete_tag_from_taxonomy
 from .validator import validate_list, validate_full_dataset
 from .pipeline import PIPELINE_STEPS, DATASET_LISTS, get_tag_producers, get_tag_usage
+from . import llm_backend
 
 WEB_DIRECTORY = "web"
 
@@ -207,6 +208,61 @@ try:
     @routes.get("/prompt_engine/tag_producers")
     async def get_tag_producers_route(request):
         return web.json_response(get_tag_producers(_read_all_lists()))
+
+    @routes.get("/prompt_engine/llm/presets")
+    async def get_llm_presets(request):
+        return web.json_response(llm_backend.PRESETS)
+
+    @routes.get("/prompt_engine/llm/config")
+    async def get_llm_config(request):
+        return web.json_response(llm_backend.load_config())
+
+    @routes.post("/prompt_engine/llm/config")
+    async def post_llm_config(request):
+        body = await request.json()
+        cfg = llm_backend.load_config()
+        cfg.update({k: body[k] for k in ("preset", "base_url", "api_key", "model", "auto_unload") if k in body})
+        llm_backend.save_config(cfg)
+        return web.json_response({"ok": True, "config": cfg})
+
+    @routes.post("/prompt_engine/llm/list_models")
+    async def post_llm_list_models(request):
+        body = await request.json()
+        cfg = {**llm_backend.load_config(), **body}
+        return web.json_response(llm_backend.list_models(cfg))
+
+    @routes.post("/prompt_engine/llm/unload")
+    async def post_llm_unload(request):
+        body = await request.json()
+        cfg = llm_backend.load_config()
+        return web.json_response(llm_backend.unload_model(cfg, body.get("instance_id")))
+
+    @routes.post("/prompt_engine/llm/suggest_tags")
+    async def post_llm_suggest_tags(request):
+        body = await request.json()
+        list_name = body.get("list_name", "")
+        item_names = body.get("item_names", [])
+        cfg = llm_backend.load_config()
+        taxonomy = load_taxonomy()
+
+        path = _list_path(list_name)
+        example_items = []
+        if os.path.exists(path):
+            with open(path, "r") as f:
+                existing = json.load(f)
+            example_items = existing[:5]
+
+        result = llm_backend.suggest_tags(cfg, taxonomy, item_names, example_items)
+
+        if result.get("ok") and cfg.get("auto_unload") and cfg.get("preset") == "lm_studio":
+            models_result = llm_backend.list_models(cfg)
+            if models_result.get("ok"):
+                match = next((m for m in models_result["models"] if m["id"] == cfg.get("model")), None)
+                if match and match.get("instance_id"):
+                    unload_result = llm_backend.unload_model(cfg, match["instance_id"])
+                    result["auto_unloaded"] = unload_result.get("ok", False)
+
+        return web.json_response(result)
 
 except ImportError:
     # Allows the package to be imported standalone (e.g. for testing) outside ComfyUI

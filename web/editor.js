@@ -71,6 +71,15 @@ function injectStyles() {
     .pe-tag-mini-btn:hover { color: #eee; }
     .pe-usage-list { background: #2c2c2c; border: 1px solid #444; border-radius: 4px; padding: 8px;
         margin: 8px 0; max-height: 140px; overflow-y: auto; font-size: 11px; }
+    .pe-toggle { position: relative; display: inline-block; width: 36px; height: 20px; }
+    .pe-toggle input { opacity: 0; width: 0; height: 0; }
+    .pe-toggle-slider { position: absolute; inset: 0; background: #444; border-radius: 20px; cursor: pointer; transition: 0.15s; }
+    .pe-toggle-slider:before { content: ""; position: absolute; height: 14px; width: 14px; left: 3px; bottom: 3px;
+        background: #eee; border-radius: 50%; transition: 0.15s; }
+    .pe-toggle input:checked + .pe-toggle-slider { background: #3b6ea5; }
+    .pe-toggle input:checked + .pe-toggle-slider:before { transform: translateX(16px); }
+    .pe-model-row { display: flex; align-items: center; gap: 4px; font-size: 12px; padding: 3px 0; }
+    .pe-model-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
     `;
     document.head.appendChild(style);
 }
@@ -230,6 +239,7 @@ async function openEditor() {
           <select id="pe-list-select"></select>
           <button class="pe-btn" id="pe-manage-taxonomy">\u{1F3F7}\uFE0F Manage Taxonomy</button>
           <button class="pe-btn" id="pe-batch-add">\u{1F30A} Batch Add</button>
+          <button class="pe-btn" id="pe-llm-settings">\u2699\uFE0F LLM Settings</button>
           <span class="pe-close" id="pe-close">&times;</span>
         </div>
         <div class="pe-body" id="pe-body"></div>
@@ -465,19 +475,46 @@ async function openEditor() {
             <label>Item names — one per line, or comma-separated</label>
             <textarea id="pe-batch-names" placeholder="Rain-slicked back alley\nFoggy pine forest clearing\n...&#10;&#10;or: Rain-slicked back alley, Foggy pine forest clearing, ..."></textarea>
           </div>
-          <div class="pe-field"><label>Shared tags — applied to every new item</label><div id="pe-batch-tags"></div></div>
-          <div class="pe-field"><label>Shared required tags</label><div id="pe-batch-required"></div></div>
-          <div class="pe-field"><label>Shared exclude tags</label><div id="pe-batch-exclude"></div></div>
-          <button class="pe-btn" id="pe-batch-preview-flow">Preview placement in pipeline</button>
-          <div id="pe-batch-flow-container"></div>
+          <div style="margin-bottom:10px;">
+            <button class="pe-btn pe-btn-primary" id="pe-batch-mode-shared">Apply shared tags</button>
+            <button class="pe-btn" id="pe-batch-mode-suggest">Suggest tags with LLM</button>
+          </div>
+
+          <div id="pe-batch-shared-mode">
+            <div class="pe-field"><label>Shared tags — applied to every new item</label><div id="pe-batch-tags"></div></div>
+            <div class="pe-field"><label>Shared required tags</label><div id="pe-batch-required"></div></div>
+            <div class="pe-field"><label>Shared exclude tags</label><div id="pe-batch-exclude"></div></div>
+            <button class="pe-btn" id="pe-batch-preview-flow">Preview placement in pipeline</button>
+            <div id="pe-batch-flow-container"></div>
+          </div>
+
+          <div id="pe-batch-suggest-mode" style="display:none;">
+            <button class="pe-btn pe-btn-primary" id="pe-batch-suggest-btn">\u{1FA84} Suggest tags</button>
+            <div id="pe-batch-suggest-status" style="margin:6px 0;"></div>
+            <div id="pe-batch-suggest-review"></div>
+          </div>
+
           <div id="pe-batch-msgs" style="margin-top:10px;"></div>
           ${actionRowHTML}
         `;
         overlay.querySelector(".pe-modal").appendChild(panel);
 
+        let batchMode = "shared";
+        let suggestedItems = null; // [{id, name, tags, required_tags, exclude_tags, dropped}]
+
         panel.querySelector("#pe-batch-tags").appendChild(tagCheckboxGroup(taxonomy, "pe-b-tags", []));
         panel.querySelector("#pe-batch-required").appendChild(tagCheckboxGroup(taxonomy, "pe-b-required", []));
         panel.querySelector("#pe-batch-exclude").appendChild(tagCheckboxGroup(taxonomy, "pe-b-exclude", []));
+
+        function setMode(mode) {
+            batchMode = mode;
+            panel.querySelector("#pe-batch-shared-mode").style.display = mode === "shared" ? "" : "none";
+            panel.querySelector("#pe-batch-suggest-mode").style.display = mode === "suggest" ? "" : "none";
+            panel.querySelector("#pe-batch-mode-shared").className = "pe-btn" + (mode === "shared" ? " pe-btn-primary" : "");
+            panel.querySelector("#pe-batch-mode-suggest").className = "pe-btn" + (mode === "suggest" ? " pe-btn-primary" : "");
+        }
+        panel.querySelector("#pe-batch-mode-shared").addEventListener("click", () => setMode("shared"));
+        panel.querySelector("#pe-batch-mode-suggest").addEventListener("click", () => setMode("suggest"));
 
         panel.querySelector("#pe-batch-preview-flow").addEventListener("click", () => {
             renderPipelineFlow(
@@ -488,23 +525,97 @@ async function openEditor() {
             );
         });
 
+        function getNames() {
+            return panel.querySelector("#pe-batch-names").value.split(/[\n,]+/).map(l => l.trim()).filter(Boolean);
+        }
+
+        function renderSuggestReview() {
+            const container = panel.querySelector("#pe-batch-suggest-review");
+            container.innerHTML = "";
+            suggestedItems.forEach((item, idx) => {
+                const row = document.createElement("div");
+                row.className = "pe-tag-group";
+                const chips = item.tags.map(t => `<span class="pe-tag-chip">${t}</span>`).join(" ") || "<span style=\"color:#888\">no tags</span>";
+                const droppedNote = item.dropped && item.dropped.length
+                    ? `<div class="pe-warning">Model also suggested (not in taxonomy, ignored): ${item.dropped.join(", ")}</div>` : "";
+                row.innerHTML = `
+                    <div class="pe-tag-group-title">${item.name}</div>
+                    <div>${chips}</div>
+                    ${droppedNote}
+                    <button class="pe-btn" data-edit-idx="${idx}" style="margin-top:6px;">Edit tags</button>
+                    <div class="pe-edit-tags-${idx}"></div>
+                `;
+                container.appendChild(row);
+            });
+            container.querySelectorAll("[data-edit-idx]").forEach(btn => btn.addEventListener("click", () => {
+                const idx = parseInt(btn.dataset.editIdx);
+                const target = container.querySelector(`.pe-edit-tags-${idx}`);
+                if (target.childElementCount) { target.innerHTML = ""; return; }
+                const picker = tagCheckboxGroup(taxonomy, `pe-suggest-edit-${idx}`, suggestedItems[idx].tags);
+                target.appendChild(picker);
+                const applyBtn = document.createElement("button");
+                applyBtn.className = "pe-btn pe-btn-primary";
+                applyBtn.textContent = "Apply";
+                applyBtn.style.marginTop = "6px";
+                applyBtn.addEventListener("click", () => {
+                    suggestedItems[idx].tags = readCheckedTags(target, `pe-suggest-edit-${idx}`);
+                    renderSuggestReview();
+                });
+                target.appendChild(applyBtn);
+            }));
+        }
+
+        panel.querySelector("#pe-batch-suggest-btn").addEventListener("click", async () => {
+            const names = getNames();
+            const status = panel.querySelector("#pe-batch-suggest-status");
+            if (!names.length) { status.innerHTML = `<div class="pe-error">Enter at least one item name first.</div>`; return; }
+            status.innerHTML = `Asking the model to tag ${names.length} item(s)...`;
+            const res = await (await fetch(`${API}/llm/suggest_tags`, {
+                method: "POST", headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ list_name: select.value, item_names: names }),
+            })).json();
+            if (!res.ok) {
+                status.innerHTML = `<div class="pe-error">${res.error}</div>`;
+                return;
+            }
+            const existingIds = new Set(currentItems.map(it => it.id));
+            suggestedItems = res.suggestions.map(s => {
+                let id = slugify(s.name), suffix = 2;
+                while (existingIds.has(id)) { id = `${slugify(s.name)}_${suffix++}`; }
+                existingIds.add(id);
+                return { id, name: s.name, tags: s.tags, required_tags: [], exclude_tags: [], dropped: s.dropped };
+            });
+            status.innerHTML = res.auto_unloaded !== undefined
+                ? `<span style="color:#7ac47a">Done. Model ${res.auto_unloaded ? "was" : "could not be"} auto-unloaded.</span>`
+                : `<span style="color:#7ac47a">Done \u2014 review below, then click Add items.</span>`;
+            renderSuggestReview();
+        });
+
         panel.querySelectorAll(".pe-batch-cancel").forEach(btn => btn.addEventListener("click", () => panel.remove()));
         panel.querySelectorAll(".pe-batch-save").forEach(btn => btn.addEventListener("click", async () => {
             const msgs = panel.querySelector("#pe-batch-msgs");
-            const lines = panel.querySelector("#pe-batch-names").value.split(/[\n,]+/).map(l => l.trim()).filter(Boolean);
-            if (!lines.length) { msgs.innerHTML = `<div class="pe-error">Enter at least one item name.</div>`; return; }
+            let newItems;
 
-            const sharedTags = readCheckedTags(panel, "pe-b-tags");
-            const sharedRequired = readCheckedTags(panel, "pe-b-required");
-            const sharedExclude = readCheckedTags(panel, "pe-b-exclude");
-
-            const existingIds = new Set(currentItems.map(it => it.id));
-            const newItems = lines.map(name => {
-                let id = slugify(name), suffix = 2;
-                while (existingIds.has(id)) { id = `${slugify(name)}_${suffix++}`; }
-                existingIds.add(id);
-                return { id, name, tags: [...sharedTags], required_tags: [...sharedRequired], exclude_tags: [...sharedExclude] };
-            });
+            if (batchMode === "suggest") {
+                if (!suggestedItems || !suggestedItems.length) {
+                    msgs.innerHTML = `<div class="pe-error">Click "Suggest tags" first, or switch to "Apply shared tags".</div>`;
+                    return;
+                }
+                newItems = suggestedItems.map(({ dropped, ...item }) => item);
+            } else {
+                const lines = getNames();
+                if (!lines.length) { msgs.innerHTML = `<div class="pe-error">Enter at least one item name.</div>`; return; }
+                const sharedTags = readCheckedTags(panel, "pe-b-tags");
+                const sharedRequired = readCheckedTags(panel, "pe-b-required");
+                const sharedExclude = readCheckedTags(panel, "pe-b-exclude");
+                const existingIds = new Set(currentItems.map(it => it.id));
+                newItems = lines.map(name => {
+                    let id = slugify(name), suffix = 2;
+                    while (existingIds.has(id)) { id = `${slugify(name)}_${suffix++}`; }
+                    existingIds.add(id);
+                    return { id, name, tags: [...sharedTags], required_tags: [...sharedRequired], exclude_tags: [...sharedExclude] };
+                });
+            }
 
             const result = await commitAndTrack(currentItems.concat(newItems));
             if (result.ok) {
@@ -604,6 +715,156 @@ async function openEditor() {
     overlay.querySelector("#pe-undo").addEventListener("click", () => undoLast());
     overlay.querySelector("#pe-manage-taxonomy").addEventListener("click", () => openTaxonomyPanel());
     overlay.querySelector("#pe-batch-add").addEventListener("click", () => openBatchAddForm());
+    overlay.querySelector("#pe-llm-settings").addEventListener("click", () => openLlmSettingsPanel());
+
+    function openLlmSettingsPanel() {
+        const panel = document.createElement("div");
+        panel.className = "pe-taxo-panel";
+        const closeRow = `<div style="margin-bottom:8px;"><button class="pe-btn pe-llm-close">Close</button></div>`;
+        panel.innerHTML = `
+          <h3 style="margin-top:0">LLM Settings</h3>
+          ${closeRow}
+          <div class="pe-field">
+            <label>Backend preset</label>
+            <select id="pe-llm-preset"></select>
+          </div>
+          <div class="pe-field">
+            <label>Base URL</label>
+            <input type="text" id="pe-llm-base-url">
+          </div>
+          <div class="pe-field">
+            <label>API key (leave blank for most local setups)</label>
+            <input type="text" id="pe-llm-api-key">
+          </div>
+          <div class="pe-field">
+            <label>Model</label>
+            <div style="display:flex; gap:8px;">
+              <select id="pe-llm-model" style="flex:1;"></select>
+              <button class="pe-btn" id="pe-llm-refresh">Refresh models</button>
+            </div>
+            <div id="pe-llm-model-list" style="margin-top:6px;"></div>
+          </div>
+          <div class="pe-field" style="display:flex; align-items:center; gap:10px;">
+            <label class="pe-toggle" style="margin:0;">
+              <input type="checkbox" id="pe-llm-auto-unload">
+              <span class="pe-toggle-slider"></span>
+            </label>
+            <span style="font-size:12px;">Auto-unload model after each Suggest-tags call (LM Studio only)</span>
+          </div>
+          <div style="margin-bottom:10px;">
+            <button class="pe-btn" id="pe-llm-unload-now">Unload now</button>
+            <button class="pe-btn" id="pe-llm-test">Test connection</button>
+          </div>
+          <div id="pe-llm-msgs"></div>
+          ${closeRow.replace('pe-llm-close">Close', 'pe-llm-close pe-llm-save">Save')}
+        `;
+        overlay.querySelector(".pe-modal").appendChild(panel);
+
+        const presetSelect = panel.querySelector("#pe-llm-preset");
+        const baseUrlInput = panel.querySelector("#pe-llm-base-url");
+        const apiKeyInput = panel.querySelector("#pe-llm-api-key");
+        const modelSelect = panel.querySelector("#pe-llm-model");
+        const autoUnloadCb = panel.querySelector("#pe-llm-auto-unload");
+        const msgs = panel.querySelector("#pe-llm-msgs");
+
+        let currentCfg = null;
+        let presets = null;
+
+        (async () => {
+            presets = await (await fetch(`${API}/llm/presets`)).json();
+            currentCfg = await (await fetch(`${API}/llm/config`)).json();
+
+            presetSelect.innerHTML = Object.entries(presets)
+                .map(([key, p]) => `<option value="${key}">${p.label}</option>`).join("");
+            presetSelect.value = currentCfg.preset;
+            baseUrlInput.value = currentCfg.base_url;
+            apiKeyInput.value = currentCfg.api_key;
+            autoUnloadCb.checked = !!currentCfg.auto_unload;
+            if (currentCfg.model) {
+                modelSelect.innerHTML = `<option value="${currentCfg.model}">${currentCfg.model}</option>`;
+            }
+        })();
+
+        presetSelect.addEventListener("change", () => {
+            if (presets && presets[presetSelect.value]) {
+                baseUrlInput.value = presets[presetSelect.value].base_url;
+            }
+        });
+
+        function readFormCfg() {
+            return {
+                preset: presetSelect.value,
+                base_url: baseUrlInput.value.trim(),
+                api_key: apiKeyInput.value.trim(),
+                model: modelSelect.value || "",
+                auto_unload: autoUnloadCb.checked,
+            };
+        }
+
+        async function refreshModels(showMsg) {
+            const cfg = readFormCfg();
+            const res = await (await fetch(`${API}/llm/list_models`, {
+                method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(cfg),
+            })).json();
+            const listDiv = panel.querySelector("#pe-llm-model-list");
+            if (!res.ok) {
+                if (showMsg) msgs.innerHTML = `<div class="pe-error">${res.error}</div>`;
+                listDiv.innerHTML = "";
+                return;
+            }
+            const previousSelection = modelSelect.value;
+            modelSelect.innerHTML = res.models.map(m =>
+                `<option value="${m.id}">${m.display_name || m.id}${m.loaded ? " (loaded)" : ""}</option>`).join("");
+            if (res.models.some(m => m.id === previousSelection)) modelSelect.value = previousSelection;
+
+            listDiv.innerHTML = res.models.map(m => `
+                <div class="pe-model-row">
+                    <span class="pe-model-dot" style="background:${m.loaded ? '#2f6b4f' : '#555'}"></span>
+                    ${m.display_name || m.id}${m.loaded === null ? "" : (m.loaded ? " \u2014 loaded" : " \u2014 not loaded")}
+                </div>`).join("");
+            if (showMsg) msgs.innerHTML = `<span style="color:#7ac47a">Found ${res.models.length} model(s).</span>`;
+        }
+
+        panel.querySelector("#pe-llm-refresh").addEventListener("click", () => refreshModels(true));
+        panel.querySelector("#pe-llm-test").addEventListener("click", () => refreshModels(true));
+
+        panel.querySelector("#pe-llm-unload-now").addEventListener("click", async () => {
+            const cfg = readFormCfg();
+            if (cfg.preset !== "lm_studio") {
+                msgs.innerHTML = `<div class="pe-warning">Unload is only supported for LM Studio right now.</div>`;
+                return;
+            }
+            const modelsRes = await (await fetch(`${API}/llm/list_models`, {
+                method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(cfg),
+            })).json();
+            const match = modelsRes.ok ? modelsRes.models.find(m => m.id === modelSelect.value) : null;
+            if (!match || !match.instance_id) {
+                msgs.innerHTML = `<div class="pe-warning">Selected model isn't currently loaded.</div>`;
+                return;
+            }
+            const res = await (await fetch(`${API}/llm/unload`, {
+                method: "POST", headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ instance_id: match.instance_id }),
+            })).json();
+            msgs.innerHTML = res.ok
+                ? `<span style="color:#7ac47a">Unloaded.</span>`
+                : `<div class="pe-error">${res.error}</div>`;
+            refreshModels(false);
+        });
+
+        panel.querySelectorAll(".pe-llm-close").forEach(btn => btn.addEventListener("click", () => panel.remove()));
+        panel.querySelectorAll(".pe-llm-save").forEach(btn => btn.addEventListener("click", async () => {
+            const cfg = readFormCfg();
+            const res = await (await fetch(`${API}/llm/config`, {
+                method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(cfg),
+            })).json();
+            if (res.ok) {
+                msgs.innerHTML = `<span style="color:#7ac47a">Saved.</span>`;
+            } else {
+                msgs.innerHTML = `<div class="pe-error">Could not save settings.</div>`;
+            }
+        }));
+    }
 
     function openTaxonomyPanel() {
         const panel = document.createElement("div");
