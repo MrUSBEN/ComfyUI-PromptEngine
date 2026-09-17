@@ -115,6 +115,79 @@ def chat_completion(cfg, system_prompt, user_prompt, temperature=0.2):
         return {"ok": False, "error": str(e)}
 
 
+def build_required_exclude_prompt(list_name, required_candidates, exclude_candidates, examples):
+    req_str = ", ".join(sorted(required_candidates)) or "(none available)"
+    exc_str = ", ".join(sorted(exclude_candidates)) or "(none available)"
+    examples_block = ""
+    if examples:
+        examples_block = "\nExamples of how required_tags/exclude_tags have been used elsewhere in this dataset:\n" + \
+            "\n".join(
+                f'- "{ex.get("name")}" (tags: {", ".join(ex.get("tags", []))}) -> '
+                f'required_tags: {", ".join(ex.get("required_tags", []))}; exclude_tags: {", ".join(ex.get("exclude_tags", []))}'
+                for ex in examples
+            )
+    return f"""You are helping set up cross-item filtering rules for a ComfyUI prompt-generation dataset.
+Items are picked in a fixed pipeline order. For items in the list "{list_name}":
+
+required_tags: a tag here means the item is only eligible if that tag is already active from something picked earlier in the pipeline. You may ONLY choose from these earlier-available tags: {req_str}
+
+exclude_tags: a tag here blocks anything picked later in the pipeline that carries that tag. You may ONLY choose from these later-occurring tags: {exc_str}
+
+Only add a required_tag or exclude_tag when there's a genuine, meaningful dependency or conflict — most items need few or none. Do not force a match just because a tag happens to be available.
+{examples_block}
+Respond with ONLY a JSON array, no markdown fences, no extra text, in this exact shape:
+[{{"name": "<item name exactly as given>", "required_tags": [...], "exclude_tags": [...]}}, ...]
+Return exactly one object per input item, in the same order as given. Empty arrays are fine and expected for most items."""
+
+
+def suggest_required_exclude(cfg, list_name, items, required_candidates, exclude_candidates, examples):
+    system_prompt = build_required_exclude_prompt(list_name, required_candidates, exclude_candidates, examples)
+    user_prompt = "Set required_tags/exclude_tags for these items:\n" + "\n".join(
+        f'{i + 1}. "{it["name"]}" (tags: {", ".join(it.get("tags", []))})' for i, it in enumerate(items)
+    )
+    result = chat_completion(cfg, system_prompt, user_prompt, temperature=0.2)
+    if not result["ok"]:
+        return result
+
+    raw = result["content"].strip()
+    if raw.startswith("```"):
+        raw = raw.strip("`")
+        if raw.lower().startswith("json"):
+            raw = raw[4:]
+        raw = raw.strip()
+
+    try:
+        parsed = json.loads(raw)
+    except json.JSONDecodeError as e:
+        return {"ok": False, "error": f"Model did not return valid JSON: {e}", "raw": raw}
+
+    suggestions = []
+    for item in parsed:
+        req = item.get("required_tags", [])
+        exc = item.get("exclude_tags", [])
+        suggestions.append({
+            "name": item.get("name", ""),
+            "required_tags": [t for t in req if t in required_candidates],
+            "exclude_tags": [t for t in exc if t in exclude_candidates],
+            "dropped_required": [t for t in req if t not in required_candidates],
+            "dropped_exclude": [t for t in exc if t not in exclude_candidates],
+        })
+    return {"ok": True, "suggestions": suggestions}
+    taxonomy_block = "\n".join(f"{cat}: {', '.join(tags)}" for cat, tags in taxonomy.items())
+    examples_block = ""
+    if example_items:
+        examples_block = "\nExamples already in this list (match this style and tagging density):\n" + \
+            "\n".join(f'- "{it.get("name")}" -> tags: {", ".join(it.get("tags", []))}' for it in example_items)
+    return f"""You are a tagging assistant for a ComfyUI prompt-generation dataset.
+You must only use tags from this exact taxonomy, grouped by category:
+{taxonomy_block}
+{examples_block}
+Never invent a tag that is not listed above. Pick only tags that genuinely describe each item.
+Respond with ONLY a JSON array, no markdown code fences, no extra text, in this exact shape:
+[{{"name": "<item name exactly as given>", "tags": ["tag1", "tag2"]}}, ...]
+Return exactly one object per input item, in the same order as given."""
+
+
 def build_suggest_prompt(taxonomy, example_items):
     taxonomy_block = "\n".join(f"{cat}: {', '.join(tags)}" for cat, tags in taxonomy.items())
     examples_block = ""

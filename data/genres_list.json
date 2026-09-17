@@ -9,7 +9,9 @@
       "night"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "daylight"
+    ]
   },
   {
     "id": "genre_cyberpunk",
@@ -22,7 +24,10 @@
       "urban"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "ancient",
+      "medieval"
+    ]
   },
   {
     "id": "genre_high_fantasy",
@@ -33,7 +38,10 @@
       "epic-scale"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "futuristic",
+      "sci-fi"
+    ]
   },
   {
     "id": "genre_post_apoc",
@@ -44,7 +52,10 @@
       "dry"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "ancient",
+      "medieval"
+    ]
   },
   {
     "id": "genre_ancient_myth",
@@ -54,7 +65,10 @@
       "magic"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "futuristic",
+      "sci-fi"
+    ]
   },
   {
     "id": "genre_noir",
@@ -66,7 +80,10 @@
       "urban"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "futuristic",
+      "magic"
+    ]
   },
   {
     "id": "genre_steampunk",
@@ -87,7 +104,11 @@
       "space"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "ancient",
+      "medieval",
+      "magic"
+    ]
   },
   {
     "id": "genre_gothic_horror",
@@ -98,7 +119,10 @@
       "magic"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "futuristic",
+      "sci-fi"
+    ]
   },
   {
     "id": "genre_wild_west",
@@ -109,7 +133,11 @@
       "outdoor"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "futuristic",
+      "sci-fi",
+      "magic"
+    ]
   },
   {
     "id": "genre_feudal_japan",
@@ -119,7 +147,11 @@
       "medieval"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "futuristic",
+      "sci-fi",
+      "modern"
+    ]
   },
   {
     "id": "genre_urban_drama",
@@ -129,7 +161,13 @@
       "urban"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "ancient",
+      "medieval",
+      "magic",
+      "sci-fi",
+      "futuristic"
+    ]
   },
   {
     "id": "genre_solarpunk",
@@ -140,7 +178,10 @@
       "nature"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "ancient",
+      "medieval"
+    ]
   },
   {
     "id": "genre_underwater_civ",
@@ -151,7 +192,10 @@
       "underwater"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "dry",
+      "desert"
+    ]
   },
   {
     "id": "genre_viking",
@@ -161,7 +205,11 @@
       "cold"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "futuristic",
+      "sci-fi",
+      "modern"
+    ]
   },
   {
     "id": "genre_egyptian",
@@ -173,7 +221,11 @@
       "hot"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "futuristic",
+      "sci-fi",
+      "snow"
+    ]
   },
   {
     "id": "genre_victorian_gothic",
@@ -183,7 +235,10 @@
       "dark"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "futuristic",
+      "sci-fi"
+    ]
   },
   {
     "id": "genre_tropical_adventure",
@@ -194,7 +249,10 @@
       "nature"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "snow",
+      "cold"
+    ]
   },
   {
     "id": "genre_arctic_survival",
@@ -205,7 +263,10 @@
       "snow"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "hot",
+      "desert"
+    ]
   },
   {
     "id": "genre_cosmic_horror",
@@ -228,7 +289,10 @@
       "urban"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "ancient",
+      "medieval"
+    ]
   },
   {
     "id": "genre_medieval_politics",
@@ -237,7 +301,11 @@
       "medieval"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "futuristic",
+      "sci-fi",
+      "modern"
+    ]
   },
   {
     "id": "genre_cyber_noir",
@@ -249,7 +317,10 @@
       "night"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "ancient",
+      "medieval"
+    ]
   },
   {
     "id": "genre_desert_nomad",
@@ -260,7 +331,11 @@
       "hot"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "futuristic",
+      "sci-fi",
+      "snow"
+    ]
   },
   {
     "id": "genre_enchanted_forest",
@@ -270,7 +345,10 @@
       "nature"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "futuristic",
+      "sci-fi"
+    ]
   },
   {
     "id": "genre_corporate_scifi",
@@ -282,7 +360,10 @@
       "urban"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "ancient",
+      "medieval"
+    ]
   },
   {
     "id": "genre_post_war",
@@ -292,7 +373,11 @@
       "modern"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "futuristic",
+      "sci-fi",
+      "magic"
+    ]
   },
   {
     "id": "genre_mecha",
@@ -303,7 +388,11 @@
       "combat"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "ancient",
+      "medieval",
+      "magic"
+    ]
   },
   {
     "id": "genre_renaissance",
@@ -313,7 +402,11 @@
       "vintage"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "futuristic",
+      "sci-fi",
+      "modern"
+    ]
   },
   {
     "id": "genre_urban_fantasy",

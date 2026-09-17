@@ -141,6 +141,26 @@ function readCheckedTags(container, groupName) {
     return Array.from(container.querySelectorAll(`input[name="${groupName}"]:checked`)).map(cb => cb.value);
 }
 
+/** Flat (ungrouped) checkbox list, for pre-filtered candidate sets like the
+ * required/exclude assist's direction-constrained tags, which don't map to taxonomy categories. */
+function flatTagCheckboxGroup(tagList, groupName, selected) {
+    const wrap = document.createElement("div");
+    for (const tag of [...tagList].sort()) {
+        const label = document.createElement("label");
+        label.className = "pe-tag-option";
+        const cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.value = tag;
+        cb.name = groupName;
+        cb.checked = selected.includes(tag);
+        label.appendChild(cb);
+        label.append(tag);
+        wrap.appendChild(label);
+    }
+    if (!tagList.length) wrap.innerHTML = `<span style="color:#888;font-size:12px;">No candidates available for this direction.</span>`;
+    return wrap;
+}
+
 function slugify(name) {
     return name.toLowerCase().trim().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
 }
@@ -305,6 +325,7 @@ async function openEditor() {
         return `<div class="pe-batch-bar">
             <span>${selectedIdx.size} selected</span>
             <button class="pe-btn pe-btn-primary pe-batch-edit-btn">Edit tags on selected</button>
+            <button class="pe-btn pe-batch-llm-assist-btn">\u{1FA84} LLM Assist (required/exclude)</button>
             <button class="pe-btn pe-btn-danger pe-batch-delete-btn">Delete selected</button>
         </div>`;
     }

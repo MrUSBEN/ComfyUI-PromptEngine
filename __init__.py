@@ -4,8 +4,8 @@ import json
 from .nodes import NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS, DATA_DIR
 from .taxonomy import load_taxonomy, save_taxonomy, add_tag, add_category, rename_tag_in_taxonomy, delete_tag_from_taxonomy
 from .validator import validate_list, validate_full_dataset
-from .pipeline import PIPELINE_STEPS, DATASET_LISTS, get_tag_producers, get_tag_usage
 from . import llm_backend
+from .pipeline import PIPELINE_STEPS, DATASET_LISTS, get_tag_producers, get_tag_usage, get_direction_candidates, get_required_exclude_examples
 
 WEB_DIRECTORY = "web"
 
@@ -253,6 +253,28 @@ try:
             example_items = existing[:5]
 
         result = llm_backend.suggest_tags(cfg, taxonomy, item_names, example_items)
+
+        if result.get("ok") and cfg.get("auto_unload") and cfg.get("preset") == "lm_studio":
+            models_result = llm_backend.list_models(cfg)
+            if models_result.get("ok"):
+                match = next((m for m in models_result["models"] if m["id"] == cfg.get("model")), None)
+                if match and match.get("instance_id"):
+                    unload_result = llm_backend.unload_model(cfg, match["instance_id"])
+                    result["auto_unloaded"] = unload_result.get("ok", False)
+
+        return web.json_response(result)
+
+    @routes.post("/prompt_engine/llm/suggest_required_exclude")
+    async def post_llm_suggest_required_exclude(request):
+        body = await request.json()
+        list_name = body.get("list_name", "")
+        items = body.get("items", [])
+        cfg = llm_backend.load_config()
+        all_lists = _read_all_lists()
+
+        required_candidates, exclude_candidates = get_direction_candidates(list_name, all_lists)
+        examples = get_required_exclude_examples(all_lists)
+        result = llm_backend.suggest_required_exclude(cfg, list_name, items, required_candidates, exclude_candidates, examples)
 
         if result.get("ok") and cfg.get("auto_unload") and cfg.get("preset") == "lm_studio":
             models_result = llm_backend.list_models(cfg)
