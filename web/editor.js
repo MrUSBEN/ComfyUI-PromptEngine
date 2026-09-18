@@ -5,6 +5,19 @@ let taxonomyCache = null;
 let pipelineCache = null;
 let tagProducersCache = null;
 
+/** fetch + .json() wrapped so a network failure (server down, connection dropped,
+ * request aborted) always surfaces as a normal {ok:false, error} result instead of
+ * throwing an unhandled promise rejection that silently kills the calling function
+ * with no visible feedback at all. */
+async function fetchJsonSafe(url, options) {
+    try {
+        const res = await fetch(url, options);
+        return await res.json();
+    } catch (e) {
+        return { ok: false, error: `Could not reach the ComfyUI server, or the connection was interrupted: ${e.message}` };
+    }
+}
+
 function injectStyles() {
     if (document.getElementById("prompt-engine-editor-styles")) return;
     const style = document.createElement("style");
@@ -80,6 +93,14 @@ function injectStyles() {
     .pe-toggle input:checked + .pe-toggle-slider:before { transform: translateX(16px); }
     .pe-model-row { display: flex; align-items: center; gap: 4px; font-size: 12px; padding: 3px 0; }
     .pe-model-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .pe-tristate-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; font-size: 12px; }
+    .pe-tristate-tag { flex: 1; color: #ddd; }
+    .pe-tristate-btn { background: #2c2c2c; color: #999; border: 1px solid #444; border-radius: 4px;
+        padding: 2px 8px; cursor: pointer; font-size: 11px; min-width: 30px; }
+    .pe-tristate-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+    .pe-tristate-btn.pe-tristate-req.active { background: #2f6b4f; border-color: #2f6b4f; color: #fff; }
+    .pe-tristate-btn.pe-tristate-excl.active { background: #7a3b3b; border-color: #7a3b3b; color: #fff; }
+    .pe-tristate-btn.pe-tristate-neutral.active { background: #444; color: #ccc; }
     `;
     document.head.appendChild(style);
 }
@@ -137,6 +158,53 @@ function tagCheckboxGroup(taxonomy, groupName, selected) {
     return wrap;
 }
 
+/** One row per tag instead of two duplicated lists: each tag gets a neutral/Req/Excl
+ * tri-state control. A tag only gets enabled buttons for directions it's actually a
+ * valid candidate for (so a tag that can only ever be a required_tag doesn't even show
+ * a clickable Excl button). Returns an accessor object rather than requiring the caller
+ * to re-query checkboxes later. */
+function renderTriStateTags(container, requiredCandidates, excludeCandidates, initialRequired, initialExcluded) {
+    const allTags = [...new Set([...requiredCandidates, ...excludeCandidates])].sort();
+    const state = {};
+    allTags.forEach(t => {
+        if (initialRequired.includes(t)) state[t] = "required";
+        else if (initialExcluded.includes(t)) state[t] = "excluded";
+        else state[t] = null;
+    });
+
+    function render() {
+        container.innerHTML = "";
+        if (!allTags.length) {
+            container.innerHTML = `<span style="color:#888;font-size:12px;">No candidate tags available in either direction.</span>`;
+            return;
+        }
+        allTags.forEach(t => {
+            const canReq = requiredCandidates.includes(t);
+            const canExcl = excludeCandidates.includes(t);
+            const row = document.createElement("div");
+            row.className = "pe-tristate-row";
+            row.innerHTML = `
+                <span class="pe-tristate-tag">${t}</span>
+                <button class="pe-tristate-btn pe-tristate-neutral ${state[t] === null ? "active" : ""}" data-tag="${t}" data-state="">\u2014</button>
+                <button class="pe-tristate-btn pe-tristate-req ${state[t] === "required" ? "active" : ""}" data-tag="${t}" data-state="required" ${canReq ? "" : "disabled"}>Req</button>
+                <button class="pe-tristate-btn pe-tristate-excl ${state[t] === "excluded" ? "active" : ""}" data-tag="${t}" data-state="excluded" ${canExcl ? "" : "disabled"}>Excl</button>
+            `;
+            container.appendChild(row);
+        });
+        container.querySelectorAll(".pe-tristate-btn").forEach(btn => btn.addEventListener("click", () => {
+            if (btn.disabled) return;
+            state[btn.dataset.tag] = btn.dataset.state || null;
+            render();
+        }));
+    }
+    render();
+
+    return {
+        getRequired: () => allTags.filter(t => state[t] === "required"),
+        getExcluded: () => allTags.filter(t => state[t] === "excluded"),
+    };
+}
+
 function readCheckedTags(container, groupName) {
     return Array.from(container.querySelectorAll(`input[name="${groupName}"]:checked`)).map(cb => cb.value);
 }
@@ -163,6 +231,14 @@ function flatTagCheckboxGroup(tagList, groupName, selected) {
 
 function slugify(name) {
     return name.toLowerCase().trim().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
+}
+
+const LLM_ASSIST_BATCH_SIZE = 15; // keeps each request small regardless of total selection size
+
+function chunkArray(arr, size) {
+    const out = [];
+    for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+    return out;
 }
 
 /** Renders the 8-step pipeline chain into `container`, highlighting currentListName's step,
@@ -591,25 +667,44 @@ async function openEditor() {
             const names = getNames();
             const status = panel.querySelector("#pe-batch-suggest-status");
             if (!names.length) { status.innerHTML = `<div class="pe-error">Enter at least one item name first.</div>`; return; }
-            status.innerHTML = `Asking the model to tag ${names.length} item(s)...`;
-            const res = await (await fetch(`${API}/llm/suggest_tags`, {
-                method: "POST", headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ list_name: select.value, item_names: names }),
-            })).json();
-            if (!res.ok) {
-                status.innerHTML = `<div class="pe-error">${res.error}</div>`;
-                return;
+
+            const batches = chunkArray(names, LLM_ASSIST_BATCH_SIZE);
+            const allSuggestions = [];
+            let lastAutoUnloaded;
+
+            for (let b = 0; b < batches.length; b++) {
+                status.innerHTML = batches.length > 1
+                    ? `Batch ${b + 1} of ${batches.length} (${batches[b].length} items)...`
+                    : `Asking the model to tag ${batches[b].length} item(s)...`;
+
+                const res = await fetchJsonSafe(`${API}/llm/suggest_tags`, {
+                    method: "POST", headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ list_name: select.value, item_names: batches[b] }),
+                });
+
+                if (!res.ok) {
+                    status.innerHTML = `<div class="pe-error">${res.error}` +
+                        (b > 0 ? ` (batch ${b + 1} of ${batches.length}; ${allSuggestions.length} item(s) from earlier batches are still available to review below)` : "") +
+                        `</div>`;
+                    if (allSuggestions.length === 0) return;
+                    break;
+                }
+                allSuggestions.push(...res.suggestions);
+                lastAutoUnloaded = res.auto_unloaded;
             }
+
             const existingIds = new Set(currentItems.map(it => it.id));
-            suggestedItems = res.suggestions.map(s => {
+            suggestedItems = allSuggestions.map(s => {
                 let id = slugify(s.name), suffix = 2;
                 while (existingIds.has(id)) { id = `${slugify(s.name)}_${suffix++}`; }
                 existingIds.add(id);
                 return { id, name: s.name, tags: s.tags, required_tags: [], exclude_tags: [], dropped: s.dropped };
             });
-            status.innerHTML = res.auto_unloaded !== undefined
-                ? `<span style="color:#7ac47a">Done. Model ${res.auto_unloaded ? "was" : "could not be"} auto-unloaded.</span>`
-                : `<span style="color:#7ac47a">Done \u2014 review below, then click Add items.</span>`;
+            if (suggestedItems.length === names.length) {
+                status.innerHTML = lastAutoUnloaded !== undefined
+                    ? `<span style="color:#7ac47a">Done. Model ${lastAutoUnloaded ? "was" : "could not be"} auto-unloaded.</span>`
+                    : `<span style="color:#7ac47a">Done \u2014 review below, then click Add items.</span>`;
+            }
             renderSuggestReview();
         });
 
@@ -658,7 +753,7 @@ async function openEditor() {
           </div>`;
         panel.innerHTML = `
           <h3 style="margin-top:0">LLM Assist \u2014 required/exclude tags for ${selectedIdx.size} item(s)</h3>
-          <p style="color:#888;font-size:12px;">Suggestions are constrained to tags that are actually producible earlier (required) or later (exclude) in the pipeline for ${select.value}. Nothing saves until you click Apply, and this only adds to each item's existing tags \u2014 nothing gets removed.</p>
+          <p style="color:#888;font-size:12px;">Each tag below is shown once \u2014 pick Req, Excl, or leave it neutral. Only tags that are actually producible earlier (Req) or later (Excl) in the pipeline for ${select.value} are selectable in that direction. Nothing saves until you click Apply, and this only adds to each item's existing tags.</p>
           ${actionRowHTML}
           <div id="pe-rea-status"></div>
           <div id="pe-rea-review"></div>
@@ -667,66 +762,10 @@ async function openEditor() {
         overlay.querySelector(".pe-modal").appendChild(panel);
 
         const selected = Array.from(selectedIdx).map(idx => currentItems[idx]);
-        let reviewItems = null; // [{idx, name, required_tags, exclude_tags, dropped_required, dropped_exclude}]
+        let reviewItems = null; // [{name, required_tags, exclude_tags, dropped_required, dropped_exclude}]
+        let controllers = []; // one renderTriStateTags() accessor per review row, in order
 
-        function renderReview(requiredCandidates, excludeCandidates) {
-            const container = panel.querySelector("#pe-rea-review");
-            container.innerHTML = "";
-            reviewItems.forEach((item, i) => {
-                const row = document.createElement("div");
-                row.className = "pe-tag-group";
-                const droppedNotes = [
-                    item.dropped_required.length ? `Dropped (not a valid required candidate): ${item.dropped_required.join(", ")}` : "",
-                    item.dropped_exclude.length ? `Dropped (not a valid exclude candidate): ${item.dropped_exclude.join(", ")}` : "",
-                ].filter(Boolean);
-                row.innerHTML = `
-                    <div class="pe-tag-group-title">${item.name}</div>
-                    ${droppedNotes.map(n => `<div class="pe-warning">${n}</div>`).join("")}
-                    <div style="display:flex; gap:20px; margin-top:6px;">
-                        <div style="flex:1;"><label style="font-size:11px;color:#aaa;">Required tags</label><div class="pe-rea-required-${i}"></div></div>
-                        <div style="flex:1;"><label style="font-size:11px;color:#aaa;">Exclude tags</label><div class="pe-rea-exclude-${i}"></div></div>
-                    </div>
-                `;
-                container.appendChild(row);
-                row.querySelector(`.pe-rea-required-${i}`).appendChild(
-                    flatTagCheckboxGroup(requiredCandidates, `pe-rea-req-${i}`, item.required_tags));
-                row.querySelector(`.pe-rea-exclude-${i}`).appendChild(
-                    flatTagCheckboxGroup(excludeCandidates, `pe-rea-exc-${i}`, item.exclude_tags));
-            });
-        }
-
-        (async () => {
-            const status = panel.querySelector("#pe-rea-status");
-            status.innerHTML = `Asking the model about ${selected.length} item(s)...`;
-            const res = await (await fetch(`${API}/llm/suggest_required_exclude`, {
-                method: "POST", headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    list_name: select.value,
-                    items: selected.map(it => ({ name: it.name, tags: it.tags })),
-                }),
-            })).json();
-
-            if (!res.ok) {
-                status.innerHTML = `<div class="pe-error">${res.error}</div>`;
-                return;
-            }
-
-            reviewItems = res.suggestions.map(s => ({ ...s }));
-            status.innerHTML = res.auto_unloaded !== undefined
-                ? `<span style="color:#7ac47a">Done. Model ${res.auto_unloaded ? "was" : "could not be"} auto-unloaded.</span>`
-                : `<span style="color:#7ac47a">Done \u2014 review below, then click Apply.</span>`;
-
-            // Re-derive the candidate sets client-side from what came back, so the
-            // checkbox lists show every valid option, not just the ones suggested.
-            const allRequired = new Set();
-            const allExclude = new Set();
-            res.suggestions.forEach(s => {
-                s.required_tags.forEach(t => allRequired.add(t));
-                s.exclude_tags.forEach(t => allExclude.add(t));
-            });
-            // Candidate pools are the same for every item in this batch (same list = same step),
-            // so ask the backend once more for the authoritative full lists via a dry no-op call
-            // is unnecessary — instead fetch them directly.
+        async function renderReview() {
             const pipelineData = await getPipeline();
             const producers = await getTagProducers();
             const currentStep = pipelineData.find(s => s.lists.includes(select.value))?.step;
@@ -736,8 +775,70 @@ async function openEditor() {
                 if (steps.some(s => s < currentStep)) fullRequired.add(tag);
                 if (steps.some(s => s > currentStep)) fullExclude.add(tag);
             }
+            const requiredCandidates = [...fullRequired];
+            const excludeCandidates = [...fullExclude];
 
-            renderReview([...fullRequired], [...fullExclude]);
+            const container = panel.querySelector("#pe-rea-review");
+            container.innerHTML = "";
+            controllers = [];
+            reviewItems.forEach((item) => {
+                const row = document.createElement("div");
+                row.className = "pe-tag-group";
+                const droppedNotes = [
+                    item.dropped_required?.length ? `Dropped (not a valid required candidate): ${item.dropped_required.join(", ")}` : "",
+                    item.dropped_exclude?.length ? `Dropped (not a valid exclude candidate): ${item.dropped_exclude.join(", ")}` : "",
+                ].filter(Boolean);
+                row.innerHTML = `
+                    <div class="pe-tag-group-title">${item.name}</div>
+                    ${droppedNotes.map(n => `<div class="pe-warning">${n}</div>`).join("")}
+                    <div class="pe-rea-tristate-container" style="margin-top:6px;"></div>
+                `;
+                container.appendChild(row);
+                controllers.push(renderTriStateTags(
+                    row.querySelector(".pe-rea-tristate-container"),
+                    requiredCandidates, excludeCandidates,
+                    item.required_tags, item.exclude_tags,
+                ));
+            });
+        }
+
+        (async () => {
+            const status = panel.querySelector("#pe-rea-status");
+            const batches = chunkArray(selected, LLM_ASSIST_BATCH_SIZE);
+            const allSuggestions = [];
+            let lastAutoUnloaded;
+
+            for (let b = 0; b < batches.length; b++) {
+                status.innerHTML = batches.length > 1
+                    ? `Batch ${b + 1} of ${batches.length} (${batches[b].length} items)...`
+                    : `Asking the model about ${batches[b].length} item(s)...`;
+
+                const res = await fetchJsonSafe(`${API}/llm/suggest_required_exclude`, {
+                    method: "POST", headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        list_name: select.value,
+                        items: batches[b].map(it => ({ name: it.name, tags: it.tags })),
+                    }),
+                });
+
+                if (!res.ok) {
+                    status.innerHTML = `<div class="pe-error">${res.error}` +
+                        (b > 0 ? ` (batch ${b + 1} of ${batches.length}; ${allSuggestions.length} item(s) from earlier batches are still available to review below)` : "") +
+                        `</div>`;
+                    if (allSuggestions.length === 0) return;
+                    break;
+                }
+                allSuggestions.push(...res.suggestions);
+                lastAutoUnloaded = res.auto_unloaded;
+            }
+
+            reviewItems = allSuggestions;
+            if (reviewItems.length === selected.length) {
+                status.innerHTML = lastAutoUnloaded !== undefined
+                    ? `<span style="color:#7ac47a">Done. Model ${lastAutoUnloaded ? "was" : "could not be"} auto-unloaded.</span>`
+                    : `<span style="color:#7ac47a">Done \u2014 review below, then click Apply.</span>`;
+            }
+            await renderReview();
         })();
 
         panel.querySelectorAll(".pe-rea-cancel").forEach(btn => btn.addEventListener("click", () => panel.remove()));
@@ -746,12 +847,12 @@ async function openEditor() {
             const union = (a, b) => Array.from(new Set([...(a || []), ...b]));
             const newItems = currentItems.map((it, idx) => {
                 const pos = Array.from(selectedIdx).indexOf(idx);
-                if (pos === -1) return it;
-                // pull the live (possibly edited) checkbox state for this review row
-                const row = panel.querySelectorAll(".pe-tag-group")[pos];
-                const reqTags = readCheckedTags(row, `pe-rea-req-${pos}`);
-                const excTags = readCheckedTags(row, `pe-rea-exc-${pos}`);
-                return { ...it, required_tags: union(it.required_tags, reqTags), exclude_tags: union(it.exclude_tags, excTags) };
+                if (pos === -1 || !controllers[pos]) return it;
+                return {
+                    ...it,
+                    required_tags: union(it.required_tags, controllers[pos].getRequired()),
+                    exclude_tags: union(it.exclude_tags, controllers[pos].getExcluded()),
+                };
             });
             const result = await commitAndTrack(newItems);
             if (result.ok) {
@@ -889,6 +990,10 @@ async function openEditor() {
             </label>
             <span style="font-size:12px;">Auto-unload model after each Suggest-tags call (LM Studio only)</span>
           </div>
+          <div class="pe-field">
+            <label>Request timeout (seconds) \u2014 applies to suggest/assist calls; raise this for large batches</label>
+            <input type="text" id="pe-llm-timeout" style="width:80px;">
+          </div>
           <div style="margin-bottom:10px;">
             <button class="pe-btn" id="pe-llm-unload-now">Unload now</button>
             <button class="pe-btn" id="pe-llm-test">Test connection</button>
@@ -903,14 +1008,19 @@ async function openEditor() {
         const apiKeyInput = panel.querySelector("#pe-llm-api-key");
         const modelSelect = panel.querySelector("#pe-llm-model");
         const autoUnloadCb = panel.querySelector("#pe-llm-auto-unload");
+        const timeoutInput = panel.querySelector("#pe-llm-timeout");
         const msgs = panel.querySelector("#pe-llm-msgs");
 
         let currentCfg = null;
         let presets = null;
 
         (async () => {
-            presets = await (await fetch(`${API}/llm/presets`)).json();
-            currentCfg = await (await fetch(`${API}/llm/config`)).json();
+            presets = await fetchJsonSafe(`${API}/llm/presets`);
+            currentCfg = await fetchJsonSafe(`${API}/llm/config`);
+            if (currentCfg.error || presets.error) {
+                msgs.innerHTML = `<div class="pe-error">Could not load LLM settings: ${currentCfg.error || presets.error}</div>`;
+                return;
+            }
 
             presetSelect.innerHTML = Object.entries(presets)
                 .map(([key, p]) => `<option value="${key}">${p.label}</option>`).join("");
@@ -918,6 +1028,7 @@ async function openEditor() {
             baseUrlInput.value = currentCfg.base_url;
             apiKeyInput.value = currentCfg.api_key;
             autoUnloadCb.checked = !!currentCfg.auto_unload;
+            timeoutInput.value = currentCfg.timeout_seconds || 60;
             if (currentCfg.model) {
                 modelSelect.innerHTML = `<option value="${currentCfg.model}">${currentCfg.model}</option>`;
             }
@@ -936,14 +1047,16 @@ async function openEditor() {
                 api_key: apiKeyInput.value.trim(),
                 model: modelSelect.value || "",
                 auto_unload: autoUnloadCb.checked,
+                timeout_seconds: parseInt(timeoutInput.value, 10) || 60,
             };
         }
 
         async function refreshModels(showMsg) {
             const cfg = readFormCfg();
-            const res = await (await fetch(`${API}/llm/list_models`, {
+            msgs.innerHTML = showMsg ? "Checking..." : "";
+            const res = await fetchJsonSafe(`${API}/llm/list_models`, {
                 method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(cfg),
-            })).json();
+            });
             const listDiv = panel.querySelector("#pe-llm-model-list");
             if (!res.ok) {
                 if (showMsg) msgs.innerHTML = `<div class="pe-error">${res.error}</div>`;
@@ -972,18 +1085,22 @@ async function openEditor() {
                 msgs.innerHTML = `<div class="pe-warning">Unload is only supported for LM Studio right now.</div>`;
                 return;
             }
-            const modelsRes = await (await fetch(`${API}/llm/list_models`, {
+            const modelsRes = await fetchJsonSafe(`${API}/llm/list_models`, {
                 method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(cfg),
-            })).json();
-            const match = modelsRes.ok ? modelsRes.models.find(m => m.id === modelSelect.value) : null;
+            });
+            if (!modelsRes.ok) {
+                msgs.innerHTML = `<div class="pe-error">${modelsRes.error}</div>`;
+                return;
+            }
+            const match = modelsRes.models.find(m => m.id === modelSelect.value);
             if (!match || !match.instance_id) {
                 msgs.innerHTML = `<div class="pe-warning">Selected model isn't currently loaded.</div>`;
                 return;
             }
-            const res = await (await fetch(`${API}/llm/unload`, {
+            const res = await fetchJsonSafe(`${API}/llm/unload`, {
                 method: "POST", headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ instance_id: match.instance_id }),
-            })).json();
+            });
             msgs.innerHTML = res.ok
                 ? `<span style="color:#7ac47a">Unloaded.</span>`
                 : `<div class="pe-error">${res.error}</div>`;
@@ -993,13 +1110,13 @@ async function openEditor() {
         panel.querySelectorAll(".pe-llm-close").forEach(btn => btn.addEventListener("click", () => panel.remove()));
         panel.querySelectorAll(".pe-llm-save").forEach(btn => btn.addEventListener("click", async () => {
             const cfg = readFormCfg();
-            const res = await (await fetch(`${API}/llm/config`, {
+            const res = await fetchJsonSafe(`${API}/llm/config`, {
                 method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(cfg),
-            })).json();
+            });
             if (res.ok) {
                 msgs.innerHTML = `<span style="color:#7ac47a">Saved.</span>`;
             } else {
-                msgs.innerHTML = `<div class="pe-error">Could not save settings.</div>`;
+                msgs.innerHTML = `<div class="pe-error">${res.error || "Could not save settings."}</div>`;
             }
         }));
     }
