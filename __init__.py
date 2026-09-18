@@ -230,7 +230,7 @@ try:
     async def post_llm_config(request):
         body = await request.json()
         cfg = llm_backend.load_config()
-        cfg.update({k: body[k] for k in ("preset", "base_url", "api_key", "model", "auto_unload") if k in body})
+        cfg.update({k: body[k] for k in ("preset", "base_url", "api_key", "model", "auto_unload", "timeout_seconds") if k in body})
         llm_backend.save_config(cfg)
         return web.json_response({"ok": True, "config": cfg})
 

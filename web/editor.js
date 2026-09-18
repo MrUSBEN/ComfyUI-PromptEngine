@@ -100,6 +100,7 @@ function injectStyles() {
     .pe-tristate-btn:disabled { opacity: 0.25; cursor: not-allowed; }
     .pe-tristate-btn.pe-tristate-req.active { background: #2f6b4f; border-color: #2f6b4f; color: #fff; }
     .pe-tristate-btn.pe-tristate-excl.active { background: #7a3b3b; border-color: #7a3b3b; color: #fff; }
+    .pe-tristate-btn.pe-tristate-plain.active { background: #3b6ea5; border-color: #3b6ea5; color: #fff; }
     .pe-tristate-btn.pe-tristate-neutral.active { background: #444; color: #ccc; }
     `;
     document.head.appendChild(style);
@@ -202,6 +203,71 @@ function renderTriStateTags(container, requiredCandidates, excludeCandidates, in
     return {
         getRequired: () => allTags.filter(t => state[t] === "required"),
         getExcluded: () => allTags.filter(t => state[t] === "excluded"),
+    };
+}
+
+async function getDirectionCandidatesForList(listName) {
+    const pipelineData = await getPipeline();
+    const producers = await getTagProducers();
+    const currentStep = pipelineData.find(s => s.lists.includes(listName))?.step;
+    const required = [], exclude = [];
+    for (const [tag, lists] of Object.entries(producers)) {
+        const steps = lists.map(l => pipelineData.find(s => s.lists.includes(l))?.step).filter(Boolean);
+        if (steps.some(s => s < currentStep)) required.push(tag);
+        if (steps.some(s => s > currentStep)) exclude.push(tag);
+    }
+    return { required, exclude };
+}
+
+/** The single tag-editing control used everywhere (item form, batch add, batch edit):
+ * one row per taxonomy tag, grouped by category, each with a 4-way state
+ * (neutral / Tag / Req / Excl) instead of three separate duplicated lists.
+ * Req/Excl are disabled per-tag when that tag isn't actually a valid candidate in that
+ * direction for the currently open list; Tag is always available since it's just descriptive. */
+function renderUnifiedTagEditor(container, taxonomy, requiredCandidates, excludeCandidates, initialTags, initialRequired, initialExcluded) {
+    const state = {};
+    for (const tags of Object.values(taxonomy)) for (const t of tags) state[t] = null;
+    (initialTags || []).forEach(t => { if (t in state) state[t] = "tag"; });
+    (initialRequired || []).forEach(t => { if (t in state) state[t] = "required"; });
+    (initialExcluded || []).forEach(t => { if (t in state) state[t] = "excluded"; });
+
+    function render() {
+        container.innerHTML = "";
+        for (const [category, tags] of Object.entries(taxonomy)) {
+            const box = document.createElement("div");
+            box.className = "pe-tag-group";
+            const title = document.createElement("div");
+            title.className = "pe-tag-group-title";
+            title.textContent = category;
+            box.appendChild(title);
+            tags.forEach(t => {
+                const canReq = requiredCandidates.includes(t);
+                const canExcl = excludeCandidates.includes(t);
+                const row = document.createElement("div");
+                row.className = "pe-tristate-row";
+                row.innerHTML = `
+                    <span class="pe-tristate-tag">${t}</span>
+                    <button class="pe-tristate-btn pe-tristate-neutral ${state[t] === null ? "active" : ""}" data-tag="${t}" data-state="">\u2014</button>
+                    <button class="pe-tristate-btn pe-tristate-plain ${state[t] === "tag" ? "active" : ""}" data-tag="${t}" data-state="tag">Tag</button>
+                    <button class="pe-tristate-btn pe-tristate-req ${state[t] === "required" ? "active" : ""}" data-tag="${t}" data-state="required" ${canReq ? "" : "disabled"}>Req</button>
+                    <button class="pe-tristate-btn pe-tristate-excl ${state[t] === "excluded" ? "active" : ""}" data-tag="${t}" data-state="excluded" ${canExcl ? "" : "disabled"}>Excl</button>
+                `;
+                box.appendChild(row);
+            });
+            container.appendChild(box);
+        }
+        container.querySelectorAll(".pe-tristate-btn").forEach(btn => btn.addEventListener("click", () => {
+            if (btn.disabled) return;
+            state[btn.dataset.tag] = btn.dataset.state || null;
+            render();
+        }));
+    }
+    render();
+
+    return {
+        getTags: () => Object.keys(state).filter(t => state[t] === "tag"),
+        getRequired: () => Object.keys(state).filter(t => state[t] === "required"),
+        getExcluded: () => Object.keys(state).filter(t => state[t] === "excluded"),
     };
 }
 
@@ -502,9 +568,10 @@ async function openEditor() {
             <label>ID (auto-generated, editable)</label>
             <input type="text" id="pe-form-id" value="${item.id}">
           </div>
-          <div class="pe-field"><label>Tags — this item's own traits</label><div id="pe-tags-tags"></div></div>
-          <div class="pe-field"><label>Required tags — at least one must already be active</label><div id="pe-tags-required"></div></div>
-          <div class="pe-field"><label>Exclude tags — invalidates this item if active</label><div id="pe-tags-exclude"></div></div>
+          <div class="pe-field">
+            <label>Tags \u2014 mark each as a plain trait (Tag), a prerequisite (Req), or a downstream block (Excl)</label>
+            <div id="pe-form-tag-editor"><span style="color:#888;font-size:12px;">Loading...</span></div>
+          </div>
           <button class="pe-btn" id="pe-form-preview-flow">View in pipeline</button>
           <div id="pe-form-flow-container"></div>
           <div id="pe-form-msgs" style="margin-top:10px;"></div>
@@ -512,16 +579,20 @@ async function openEditor() {
         `;
         overlay.querySelector(".pe-modal").appendChild(formOverlay);
 
-        formOverlay.querySelector("#pe-tags-tags").appendChild(tagCheckboxGroup(taxonomy, "pe-tags", item.tags || []));
-        formOverlay.querySelector("#pe-tags-required").appendChild(tagCheckboxGroup(taxonomy, "pe-required", item.required_tags || []));
-        formOverlay.querySelector("#pe-tags-exclude").appendChild(tagCheckboxGroup(taxonomy, "pe-exclude", item.exclude_tags || []));
+        let controller = null;
+        (async () => {
+            const { required, exclude } = await getDirectionCandidatesForList(select.value);
+            controller = renderUnifiedTagEditor(
+                formOverlay.querySelector("#pe-form-tag-editor"), taxonomy, required, exclude,
+                item.tags || [], item.required_tags || [], item.exclude_tags || [],
+            );
+        })();
 
         formOverlay.querySelector("#pe-form-preview-flow").addEventListener("click", () => {
+            if (!controller) return;
             renderPipelineFlow(
                 formOverlay.querySelector("#pe-form-flow-container"),
-                select.value,
-                readCheckedTags(formOverlay, "pe-required"),
-                readCheckedTags(formOverlay, "pe-exclude"),
+                select.value, controller.getRequired(), controller.getExcluded(),
             );
         });
 
@@ -533,12 +604,13 @@ async function openEditor() {
 
         formOverlay.querySelectorAll(".pe-form-cancel").forEach(btn => btn.addEventListener("click", () => formOverlay.remove()));
         formOverlay.querySelectorAll(".pe-form-save").forEach(btn => btn.addEventListener("click", async () => {
+            if (!controller) return;
             const newItem = {
                 id: idInput.value.trim(),
                 name: nameInput.value.trim(),
-                tags: readCheckedTags(formOverlay, "pe-tags"),
-                required_tags: readCheckedTags(formOverlay, "pe-required"),
-                exclude_tags: readCheckedTags(formOverlay, "pe-exclude"),
+                tags: controller.getTags(),
+                required_tags: controller.getRequired(),
+                exclude_tags: controller.getExcluded(),
             };
             if (!newItem.id || !newItem.name) {
                 formOverlay.querySelector("#pe-form-msgs").innerHTML = `<div class="pe-error">Name and ID are required.</div>`;
@@ -579,9 +651,10 @@ async function openEditor() {
           </div>
 
           <div id="pe-batch-shared-mode">
-            <div class="pe-field"><label>Shared tags — applied to every new item</label><div id="pe-batch-tags"></div></div>
-            <div class="pe-field"><label>Shared required tags</label><div id="pe-batch-required"></div></div>
-            <div class="pe-field"><label>Shared exclude tags</label><div id="pe-batch-exclude"></div></div>
+            <div class="pe-field">
+              <label>Shared tags \u2014 applied to every new item</label>
+              <div id="pe-batch-tag-editor"><span style="color:#888;font-size:12px;">Loading...</span></div>
+            </div>
             <button class="pe-btn" id="pe-batch-preview-flow">Preview placement in pipeline</button>
             <div id="pe-batch-flow-container"></div>
           </div>
@@ -599,10 +672,14 @@ async function openEditor() {
 
         let batchMode = "shared";
         let suggestedItems = null; // [{id, name, tags, required_tags, exclude_tags, dropped}]
+        let sharedController = null;
 
-        panel.querySelector("#pe-batch-tags").appendChild(tagCheckboxGroup(taxonomy, "pe-b-tags", []));
-        panel.querySelector("#pe-batch-required").appendChild(tagCheckboxGroup(taxonomy, "pe-b-required", []));
-        panel.querySelector("#pe-batch-exclude").appendChild(tagCheckboxGroup(taxonomy, "pe-b-exclude", []));
+        (async () => {
+            const { required, exclude } = await getDirectionCandidatesForList(select.value);
+            sharedController = renderUnifiedTagEditor(
+                panel.querySelector("#pe-batch-tag-editor"), taxonomy, required, exclude, [], [], [],
+            );
+        })();
 
         function setMode(mode) {
             batchMode = mode;
@@ -615,11 +692,10 @@ async function openEditor() {
         panel.querySelector("#pe-batch-mode-suggest").addEventListener("click", () => setMode("suggest"));
 
         panel.querySelector("#pe-batch-preview-flow").addEventListener("click", () => {
+            if (!sharedController) return;
             renderPipelineFlow(
                 panel.querySelector("#pe-batch-flow-container"),
-                select.value,
-                readCheckedTags(panel, "pe-b-required"),
-                readCheckedTags(panel, "pe-b-exclude"),
+                select.value, sharedController.getRequired(), sharedController.getExcluded(),
             );
         });
 
@@ -722,9 +798,10 @@ async function openEditor() {
             } else {
                 const lines = getNames();
                 if (!lines.length) { msgs.innerHTML = `<div class="pe-error">Enter at least one item name.</div>`; return; }
-                const sharedTags = readCheckedTags(panel, "pe-b-tags");
-                const sharedRequired = readCheckedTags(panel, "pe-b-required");
-                const sharedExclude = readCheckedTags(panel, "pe-b-exclude");
+                if (!sharedController) { msgs.innerHTML = `<div class="pe-error">Tag editor still loading, try again in a moment.</div>`; return; }
+                const sharedTags = sharedController.getTags();
+                const sharedRequired = sharedController.getRequired();
+                const sharedExclude = sharedController.getExcluded();
                 const existingIds = new Set(currentItems.map(it => it.id));
                 newItems = lines.map(name => {
                     let id = slugify(name), suffix = 2;
@@ -766,17 +843,7 @@ async function openEditor() {
         let controllers = []; // one renderTriStateTags() accessor per review row, in order
 
         async function renderReview() {
-            const pipelineData = await getPipeline();
-            const producers = await getTagProducers();
-            const currentStep = pipelineData.find(s => s.lists.includes(select.value))?.step;
-            const fullRequired = new Set(), fullExclude = new Set();
-            for (const [tag, lists] of Object.entries(producers)) {
-                const steps = lists.map(l => pipelineData.find(s => s.lists.includes(l))?.step).filter(Boolean);
-                if (steps.some(s => s < currentStep)) fullRequired.add(tag);
-                if (steps.some(s => s > currentStep)) fullExclude.add(tag);
-            }
-            const requiredCandidates = [...fullRequired];
-            const excludeCandidates = [...fullExclude];
+            const { required: requiredCandidates, exclude: excludeCandidates } = await getDirectionCandidatesForList(select.value);
 
             const container = panel.querySelector("#pe-rea-review");
             container.innerHTML = "";
@@ -870,34 +937,37 @@ async function openEditor() {
         panel.className = "pe-form-overlay";
         const actionRowHTML = `
           <div style="margin:8px 0;">
-            <button class="pe-btn pe-btn-primary pe-be-save">Add tags to selected</button>
-            <button class="pe-btn pe-btn-danger pe-be-remove">Remove tags from selected</button>
+            <button class="pe-btn pe-btn-primary pe-be-save">Add to selected</button>
+            <button class="pe-btn pe-btn-danger pe-be-remove">Remove from selected</button>
             <button class="pe-btn pe-be-cancel">Cancel</button>
           </div>`;
         panel.innerHTML = `
-          <h3 style="margin-top:0">Apply tags to ${selectedIdx.size} selected item(s)</h3>
-          <p style="color:#888;font-size:12px;">Check the tags you want, then either add them to every selected item's existing tags, or remove them if the items already have them \u2014 nothing else on the item is touched either way.</p>
+          <h3 style="margin-top:0">Edit tags on ${selectedIdx.size} selected item(s)</h3>
+          <p style="color:#888;font-size:12px;">Mark each tag as Tag / Req / Excl, then either add those marks to every selected item, or remove them if present \u2014 nothing else on the item is touched either way.</p>
           ${actionRowHTML}
-          <div class="pe-field"><label>Tags</label><div id="pe-be-tags"></div></div>
-          <div class="pe-field"><label>Required tags</label><div id="pe-be-required"></div></div>
-          <div class="pe-field"><label>Exclude tags</label><div id="pe-be-exclude"></div></div>
+          <div id="pe-be-tag-editor"><span style="color:#888;font-size:12px;">Loading...</span></div>
           <div id="pe-be-msgs"></div>
           ${actionRowHTML}
         `;
         overlay.querySelector(".pe-modal").appendChild(panel);
 
-        panel.querySelector("#pe-be-tags").appendChild(tagCheckboxGroup(taxonomy, "pe-be-tags", []));
-        panel.querySelector("#pe-be-required").appendChild(tagCheckboxGroup(taxonomy, "pe-be-required", []));
-        panel.querySelector("#pe-be-exclude").appendChild(tagCheckboxGroup(taxonomy, "pe-be-exclude", []));
+        let controller = null;
+        (async () => {
+            const { required, exclude } = await getDirectionCandidatesForList(select.value);
+            controller = renderUnifiedTagEditor(
+                panel.querySelector("#pe-be-tag-editor"), taxonomy, required, exclude, [], [], [],
+            );
+        })();
 
         panel.querySelectorAll(".pe-be-cancel").forEach(btn => btn.addEventListener("click", () => panel.remove()));
 
         async function applyBatchEdit(mode) {
-            const chosenTags = readCheckedTags(panel, "pe-be-tags");
-            const chosenRequired = readCheckedTags(panel, "pe-be-required");
-            const chosenExclude = readCheckedTags(panel, "pe-be-exclude");
+            if (!controller) return;
+            const chosenTags = controller.getTags();
+            const chosenRequired = controller.getRequired();
+            const chosenExclude = controller.getExcluded();
             if (!chosenTags.length && !chosenRequired.length && !chosenExclude.length) {
-                panel.querySelector("#pe-be-msgs").innerHTML = `<div class="pe-error">Select at least one tag.</div>`;
+                panel.querySelector("#pe-be-msgs").innerHTML = `<div class="pe-error">Mark at least one tag first.</div>`;
                 return;
             }
             const union = (a, b) => Array.from(new Set([...(a || []), ...b]));
