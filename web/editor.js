@@ -372,6 +372,7 @@ async function openEditor() {
             renderTable();
         }));
         body.querySelectorAll(".pe-batch-edit-btn").forEach(btn => btn.addEventListener("click", () => openBatchEditForm()));
+        body.querySelectorAll(".pe-batch-llm-assist-btn").forEach(btn => btn.addEventListener("click", () => openRequiredExcludeAssistForm()));
         body.querySelectorAll(".pe-batch-delete-btn").forEach(btn => btn.addEventListener("click", async () => {
             if (!confirm(`Delete ${selectedIdx.size} item(s)?`)) return;
             const newItems = currentItems.filter((_, idx) => !selectedIdx.has(idx));
@@ -643,6 +644,122 @@ async function openEditor() {
                 panel.remove();
             } else {
                 msgs.innerHTML = result.errors.map(e => `<div class="pe-error">${e}</div>`).join("");
+            }
+        }));
+    }
+
+    function openRequiredExcludeAssistForm() {
+        const panel = document.createElement("div");
+        panel.className = "pe-form-overlay";
+        const actionRowHTML = `
+          <div style="margin:8px 0;">
+            <button class="pe-btn pe-btn-primary pe-rea-apply">Apply to selected</button>
+            <button class="pe-btn pe-rea-cancel">Cancel</button>
+          </div>`;
+        panel.innerHTML = `
+          <h3 style="margin-top:0">LLM Assist \u2014 required/exclude tags for ${selectedIdx.size} item(s)</h3>
+          <p style="color:#888;font-size:12px;">Suggestions are constrained to tags that are actually producible earlier (required) or later (exclude) in the pipeline for ${select.value}. Nothing saves until you click Apply, and this only adds to each item's existing tags \u2014 nothing gets removed.</p>
+          ${actionRowHTML}
+          <div id="pe-rea-status"></div>
+          <div id="pe-rea-review"></div>
+          ${actionRowHTML}
+        `;
+        overlay.querySelector(".pe-modal").appendChild(panel);
+
+        const selected = Array.from(selectedIdx).map(idx => currentItems[idx]);
+        let reviewItems = null; // [{idx, name, required_tags, exclude_tags, dropped_required, dropped_exclude}]
+
+        function renderReview(requiredCandidates, excludeCandidates) {
+            const container = panel.querySelector("#pe-rea-review");
+            container.innerHTML = "";
+            reviewItems.forEach((item, i) => {
+                const row = document.createElement("div");
+                row.className = "pe-tag-group";
+                const droppedNotes = [
+                    item.dropped_required.length ? `Dropped (not a valid required candidate): ${item.dropped_required.join(", ")}` : "",
+                    item.dropped_exclude.length ? `Dropped (not a valid exclude candidate): ${item.dropped_exclude.join(", ")}` : "",
+                ].filter(Boolean);
+                row.innerHTML = `
+                    <div class="pe-tag-group-title">${item.name}</div>
+                    ${droppedNotes.map(n => `<div class="pe-warning">${n}</div>`).join("")}
+                    <div style="display:flex; gap:20px; margin-top:6px;">
+                        <div style="flex:1;"><label style="font-size:11px;color:#aaa;">Required tags</label><div class="pe-rea-required-${i}"></div></div>
+                        <div style="flex:1;"><label style="font-size:11px;color:#aaa;">Exclude tags</label><div class="pe-rea-exclude-${i}"></div></div>
+                    </div>
+                `;
+                container.appendChild(row);
+                row.querySelector(`.pe-rea-required-${i}`).appendChild(
+                    flatTagCheckboxGroup(requiredCandidates, `pe-rea-req-${i}`, item.required_tags));
+                row.querySelector(`.pe-rea-exclude-${i}`).appendChild(
+                    flatTagCheckboxGroup(excludeCandidates, `pe-rea-exc-${i}`, item.exclude_tags));
+            });
+        }
+
+        (async () => {
+            const status = panel.querySelector("#pe-rea-status");
+            status.innerHTML = `Asking the model about ${selected.length} item(s)...`;
+            const res = await (await fetch(`${API}/llm/suggest_required_exclude`, {
+                method: "POST", headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    list_name: select.value,
+                    items: selected.map(it => ({ name: it.name, tags: it.tags })),
+                }),
+            })).json();
+
+            if (!res.ok) {
+                status.innerHTML = `<div class="pe-error">${res.error}</div>`;
+                return;
+            }
+
+            reviewItems = res.suggestions.map(s => ({ ...s }));
+            status.innerHTML = res.auto_unloaded !== undefined
+                ? `<span style="color:#7ac47a">Done. Model ${res.auto_unloaded ? "was" : "could not be"} auto-unloaded.</span>`
+                : `<span style="color:#7ac47a">Done \u2014 review below, then click Apply.</span>`;
+
+            // Re-derive the candidate sets client-side from what came back, so the
+            // checkbox lists show every valid option, not just the ones suggested.
+            const allRequired = new Set();
+            const allExclude = new Set();
+            res.suggestions.forEach(s => {
+                s.required_tags.forEach(t => allRequired.add(t));
+                s.exclude_tags.forEach(t => allExclude.add(t));
+            });
+            // Candidate pools are the same for every item in this batch (same list = same step),
+            // so ask the backend once more for the authoritative full lists via a dry no-op call
+            // is unnecessary — instead fetch them directly.
+            const pipelineData = await getPipeline();
+            const producers = await getTagProducers();
+            const currentStep = pipelineData.find(s => s.lists.includes(select.value))?.step;
+            const fullRequired = new Set(), fullExclude = new Set();
+            for (const [tag, lists] of Object.entries(producers)) {
+                const steps = lists.map(l => pipelineData.find(s => s.lists.includes(l))?.step).filter(Boolean);
+                if (steps.some(s => s < currentStep)) fullRequired.add(tag);
+                if (steps.some(s => s > currentStep)) fullExclude.add(tag);
+            }
+
+            renderReview([...fullRequired], [...fullExclude]);
+        })();
+
+        panel.querySelectorAll(".pe-rea-cancel").forEach(btn => btn.addEventListener("click", () => panel.remove()));
+        panel.querySelectorAll(".pe-rea-apply").forEach(btn => btn.addEventListener("click", async () => {
+            if (!reviewItems) return;
+            const union = (a, b) => Array.from(new Set([...(a || []), ...b]));
+            const newItems = currentItems.map((it, idx) => {
+                const pos = Array.from(selectedIdx).indexOf(idx);
+                if (pos === -1) return it;
+                // pull the live (possibly edited) checkbox state for this review row
+                const row = panel.querySelectorAll(".pe-tag-group")[pos];
+                const reqTags = readCheckedTags(row, `pe-rea-req-${pos}`);
+                const excTags = readCheckedTags(row, `pe-rea-exc-${pos}`);
+                return { ...it, required_tags: union(it.required_tags, reqTags), exclude_tags: union(it.exclude_tags, excTags) };
+            });
+            const result = await commitAndTrack(newItems);
+            if (result.ok) {
+                selectedIdx = new Set();
+                panel.remove();
+                renderTable();
+            } else {
+                panel.querySelector("#pe-rea-status").innerHTML = result.errors.map(e => `<div class="pe-error">${e}</div>`).join("");
             }
         }));
     }

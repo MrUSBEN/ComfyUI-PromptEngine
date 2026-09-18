@@ -22,7 +22,10 @@
       "night"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "ancient",
+      "medieval"
+    ]
   },
   {
     "id": "loc_abandoned_warehouse",
@@ -46,7 +49,10 @@
       "wet"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "futuristic",
+      "sci-fi"
+    ]
   },
   {
     "id": "loc_coastal_cliff",
@@ -70,7 +76,10 @@
       "hot"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "cold",
+      "snow"
+    ]
   },
   {
     "id": "loc_underwater_ruins",
@@ -81,8 +90,14 @@
       "wet",
       "ruins"
     ],
-    "required_tags": [],
-    "exclude_tags": []
+    "required_tags": [
+      "aquatic",
+      "underwater"
+    ],
+    "exclude_tags": [
+      "desert",
+      "dry"
+    ]
   },
   {
     "id": "loc_mountain_pass",
@@ -95,7 +110,10 @@
       "cold"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "desert",
+      "hot"
+    ]
   },
   {
     "id": "loc_neon_market",
@@ -107,7 +125,10 @@
       "neon"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "ancient",
+      "medieval"
+    ]
   },
   {
     "id": "loc_cathedral",
@@ -116,7 +137,11 @@
       "indoor",
       "ancient"
     ],
-    "required_tags": [],
+    "required_tags": [
+      "ancient",
+      "medieval",
+      "vintage"
+    ],
     "exclude_tags": []
   },
   {
@@ -128,8 +153,14 @@
       "ruins",
       "nature"
     ],
-    "required_tags": [],
-    "exclude_tags": []
+    "required_tags": [
+      "ancient",
+      "magic"
+    ],
+    "exclude_tags": [
+      "futuristic",
+      "sci-fi"
+    ]
   },
   {
     "id": "loc_space_station",
@@ -140,8 +171,15 @@
       "sci-fi",
       "space"
     ],
-    "required_tags": [],
-    "exclude_tags": []
+    "required_tags": [
+      "futuristic",
+      "sci-fi"
+    ],
+    "exclude_tags": [
+      "ancient",
+      "magic",
+      "medieval"
+    ]
   },
   {
     "id": "loc_train_station",
@@ -185,7 +223,10 @@
       "dry"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "cold",
+      "snow"
+    ]
   },
   {
     "id": "loc_noodle_stand",
@@ -196,8 +237,14 @@
       "neon",
       "night"
     ],
-    "required_tags": [],
-    "exclude_tags": []
+    "required_tags": [
+      "futuristic",
+      "sci-fi"
+    ],
+    "exclude_tags": [
+      "ancient",
+      "medieval"
+    ]
   },
   {
     "id": "loc_castle_courtyard",
@@ -207,8 +254,14 @@
       "medieval",
       "ruins"
     ],
-    "required_tags": [],
-    "exclude_tags": []
+    "required_tags": [
+      "ancient",
+      "medieval"
+    ],
+    "exclude_tags": [
+      "futuristic",
+      "sci-fi"
+    ]
   },
   {
     "id": "loc_graveyard",
@@ -241,7 +294,10 @@
       "wet"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "desert",
+      "dry"
+    ]
   },
   {
     "id": "loc_volcanic_cave",
@@ -253,7 +309,10 @@
       "cave"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "cold",
+      "snow"
+    ]
   },
   {
     "id": "loc_frozen_tundra",
@@ -265,7 +324,10 @@
       "cold"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "desert",
+      "hot"
+    ]
   },
   {
     "id": "loc_rooftop_garden",
@@ -287,7 +349,10 @@
       "vintage"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "futuristic",
+      "sci-fi"
+    ]
   },
   {
     "id": "loc_dockside_pier",
@@ -311,8 +376,14 @@
       "ruins",
       "hot"
     ],
-    "required_tags": [],
-    "exclude_tags": []
+    "required_tags": [
+      "ancient",
+      "magic"
+    ],
+    "exclude_tags": [
+      "cold",
+      "snow"
+    ]
   },
   {
     "id": "loc_futuristic_highway",
@@ -323,8 +394,15 @@
       "futuristic",
       "night"
     ],
-    "required_tags": [],
-    "exclude_tags": []
+    "required_tags": [
+      "futuristic",
+      "sci-fi"
+    ],
+    "exclude_tags": [
+      "ancient",
+      "magic",
+      "medieval"
+    ]
   },
   {
     "id": "loc_amusement_park",
@@ -358,7 +436,10 @@
       "wet"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "desert",
+      "dry"
+    ]
   },
   {
     "id": "loc_bunker_corridor",
@@ -380,8 +461,14 @@
       "ancient",
       "ruins"
     ],
-    "required_tags": [],
-    "exclude_tags": []
+    "required_tags": [
+      "ancient",
+      "magic"
+    ],
+    "exclude_tags": [
+      "cold",
+      "snow"
+    ]
   },
   {
     "id": "loc_izakaya_street",
@@ -393,7 +480,10 @@
       "neon"
     ],
     "required_tags": [],
-    "exclude_tags": []
+    "exclude_tags": [
+      "ancient",
+      "medieval"
+    ]
   },
   {
     "id": "loc_forge_chamber",
@@ -404,7 +494,13 @@
       "hot",
       "medieval"
     ],
-    "required_tags": [],
-    "exclude_tags": []
+    "required_tags": [
+      "magic",
+      "medieval"
+    ],
+    "exclude_tags": [
+      "futuristic",
+      "sci-fi"
+    ]
   }
 ]
