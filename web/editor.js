@@ -401,6 +401,10 @@ async function openEditor() {
           <select id="pe-list-select"></select>
           <button class="pe-btn" id="pe-manage-taxonomy">\u{1F3F7}\uFE0F Manage Taxonomy</button>
           <button class="pe-btn" id="pe-batch-add">\u{1F30A} Batch Add</button>
+          <button class="pe-btn" id="pe-export-list">\u{1F4E4} Export</button>
+          <button class="pe-btn" id="pe-export-all">Export All</button>
+          <button class="pe-btn" id="pe-import-list">\u{1F4E5} Import</button>
+          <input type="file" id="pe-import-file-input" accept=".json" style="display:none;">
           <button class="pe-btn" id="pe-llm-settings">\u2699\uFE0F LLM Settings</button>
           <span class="pe-close" id="pe-close">&times;</span>
         </div>
@@ -1025,6 +1029,234 @@ async function openEditor() {
     overlay.querySelector("#pe-manage-taxonomy").addEventListener("click", () => openTaxonomyPanel());
     overlay.querySelector("#pe-batch-add").addEventListener("click", () => openBatchAddForm());
     overlay.querySelector("#pe-llm-settings").addEventListener("click", () => openLlmSettingsPanel());
+
+    function downloadJson(data, filename) {
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+    }
+
+    overlay.querySelector("#pe-export-list").addEventListener("click", async () => {
+        const status = overlay.querySelector("#pe-status");
+        const res = await fetchJsonSafe(`${API}/list/${select.value}/export`);
+        if (res.error) { status.innerHTML = `<div class="pe-error">${res.error}</div>`; return; }
+        downloadJson(res, `${select.value}_export.json`);
+        status.innerHTML = `<span style="color:#7ac47a">Exported ${res.items.length} item(s).</span>`;
+    });
+
+    overlay.querySelector("#pe-export-all").addEventListener("click", async () => {
+        const status = overlay.querySelector("#pe-status");
+        const res = await fetchJsonSafe(`${API}/export_all`);
+        if (res.error) { status.innerHTML = `<div class="pe-error">${res.error}</div>`; return; }
+        downloadJson(res, `prompt_engine_full_backup.json`);
+        status.innerHTML = `<span style="color:#7ac47a">Full backup exported.</span>`;
+    });
+
+    overlay.querySelector("#pe-import-list").addEventListener("click", () => {
+        overlay.querySelector("#pe-import-file-input").click();
+    });
+    overlay.querySelector("#pe-import-file-input").addEventListener("change", async (e) => {
+        const file = e.target.files[0];
+        e.target.value = ""; // allow re-selecting the same file later
+        if (!file) return;
+        try {
+            const text = await file.text();
+            const bundle = JSON.parse(text);
+            openImportReviewForm(bundle);
+        } catch (err) {
+            overlay.querySelector("#pe-status").innerHTML = `<div class="pe-error">Could not read that file as a valid export bundle: ${err.message}</div>`;
+        }
+    });
+
+    function openImportReviewForm(bundle) {
+        if (bundle.list_name) return openSingleListImportReview(bundle);
+        if (bundle.lists) return openFullBackupImportForm(bundle);
+        overlay.querySelector("#pe-status").innerHTML = `<div class="pe-error">Unrecognized bundle format — expected a single-list export or a full backup.</div>`;
+    }
+
+    function openSingleListImportReview(bundle) {
+        const panel = document.createElement("div");
+        panel.className = "pe-form-overlay";
+        const actionRowHTML = `
+          <div style="margin:8px 0;">
+            <button class="pe-btn pe-btn-primary pe-imp-apply">Apply import</button>
+            <button class="pe-btn pe-imp-cancel">Cancel</button>
+          </div>`;
+        panel.innerHTML = `
+          <h3 style="margin-top:0">Import into ${bundle.list_name}</h3>
+          <div id="pe-imp-status">Checking for duplicates...</div>
+          ${actionRowHTML}
+          <div id="pe-imp-body"></div>
+          ${actionRowHTML}
+        `;
+        overlay.querySelector(".pe-modal").appendChild(panel);
+
+        const tagDecisions = {};   // incoming tag -> "add_as_new" | "use_existing:<tag>"
+        const itemDecisions = {};  // incoming item id -> "skip" | "merge" | "import_as_new"
+
+        (async () => {
+            const preview = await fetchJsonSafe(`${API}/import_preview`, {
+                method: "POST", headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ bundle }),
+            });
+            if (!preview.ok) {
+                panel.querySelector("#pe-imp-status").innerHTML = `<div class="pe-error">${preview.error}</div>`;
+                return;
+            }
+            panel.querySelector("#pe-imp-status").innerHTML =
+                `<span style="color:#7ac47a">${preview.new_items.length} new, ` +
+                `${preview.exact_duplicates.length} exact duplicate(s), ` +
+                `${preview.possible_duplicates.length} possible duplicate(s) to review.</span>`;
+
+            const body = panel.querySelector("#pe-imp-body");
+            body.innerHTML = "";
+
+            if (preview.taxonomy.new_tags.length) {
+                const box = document.createElement("div");
+                box.className = "pe-tag-group";
+                box.innerHTML = `<div class="pe-tag-group-title">New tags (added automatically)</div>` +
+                    preview.taxonomy.new_tags.map(t => `<span class="pe-tag-chip">${t.tag}</span>`).join(" ");
+                body.appendChild(box);
+            }
+
+            if (preview.taxonomy.similar_conflicts.length) {
+                const box = document.createElement("div");
+                box.className = "pe-tag-group";
+                box.innerHTML = `<div class="pe-tag-group-title">Tag conflicts \u2014 pick one per tag</div>`;
+                preview.taxonomy.similar_conflicts.forEach(c => {
+                    tagDecisions[c.tag] = `use_existing:${c.similar_to[0]}`; // sensible default
+                    const row = document.createElement("div");
+                    row.className = "pe-tristate-row";
+                    row.innerHTML = `
+                        <span class="pe-tristate-tag">'${c.tag}' looks like: ${c.similar_to.join(", ")}</span>
+                        <select data-tag="${c.tag}" style="background:#2c2c2c;color:#eee;border:1px solid #444;border-radius:4px;">
+                            ${c.similar_to.map(s => `<option value="use_existing:${s}">Use '${s}'</option>`).join("")}
+                            <option value="add_as_new">Add '${c.tag}' as new</option>
+                        </select>`;
+                    row.querySelector("select").addEventListener("change", (e) => { tagDecisions[c.tag] = e.target.value; });
+                    box.appendChild(row);
+                });
+                body.appendChild(box);
+            }
+
+            if (preview.new_items.length) {
+                const box = document.createElement("div");
+                box.className = "pe-tag-group";
+                box.innerHTML = `<div class="pe-tag-group-title">New items (imported automatically)</div>` +
+                    preview.new_items.map(it => `<div>${it.name}</div>`).join("");
+                body.appendChild(box);
+            }
+
+            function renderDecisionRow(box, inc, matchLabel, options) {
+                itemDecisions[inc.id] = options[0].value;
+                const row = document.createElement("div");
+                row.className = "pe-tristate-row";
+                row.innerHTML = `
+                    <span class="pe-tristate-tag">${inc.name}${matchLabel}</span>
+                    <select style="background:#2c2c2c;color:#eee;border:1px solid #444;border-radius:4px;">
+                        ${options.map(o => `<option value="${o.value}">${o.label}</option>`).join("")}
+                    </select>`;
+                row.querySelector("select").addEventListener("change", (e) => { itemDecisions[inc.id] = e.target.value; });
+                box.appendChild(row);
+            }
+
+            if (preview.exact_duplicates.length) {
+                const box = document.createElement("div");
+                box.className = "pe-tag-group";
+                box.innerHTML = `<div class="pe-tag-group-title">Exact ID matches \u2014 skipped unless you choose otherwise</div>`;
+                preview.exact_duplicates.forEach(d => renderDecisionRow(box, d.incoming, ` (matches existing '${d.existing.name}')`, [
+                    { value: "skip", label: "Skip (keep existing as-is)" },
+                    { value: "merge", label: "Merge tags into existing" },
+                    { value: "import_as_new", label: "Import as a separate new item" },
+                ]));
+                body.appendChild(box);
+            }
+
+            if (preview.possible_duplicates.length) {
+                const box = document.createElement("div");
+                box.className = "pe-tag-group";
+                box.innerHTML = `<div class="pe-tag-group-title">Possible duplicates \u2014 skipped unless you choose otherwise</div>`;
+                preview.possible_duplicates.forEach(d => renderDecisionRow(box, d.incoming,
+                    ` (${Math.round(d.similarity * 100)}% similar to existing '${d.existing.name}')`, [
+                        { value: "skip", label: "Skip" },
+                        { value: "import_as_new", label: "Import as a separate new item" },
+                        { value: "merge", label: `Merge tags into '${d.existing.name}'` },
+                    ]));
+                body.appendChild(box);
+            }
+        })();
+
+        panel.querySelectorAll(".pe-imp-cancel").forEach(btn => btn.addEventListener("click", () => panel.remove()));
+        panel.querySelectorAll(".pe-imp-apply").forEach(btn => btn.addEventListener("click", async () => {
+            const res = await fetchJsonSafe(`${API}/import_commit`, {
+                method: "POST", headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ bundle, tag_decisions: tagDecisions, item_decisions: itemDecisions }),
+            });
+            const status = panel.querySelector("#pe-imp-status");
+            if (res.ok) {
+                status.innerHTML = `<span style="color:#7ac47a">Imported: ${res.summary.imported}, merged: ${res.summary.merged}, skipped: ${res.summary.skipped}.</span>`;
+                Object.assign(taxonomy, await getTaxonomy(true));
+                invalidateDatasetCaches();
+                select.value = bundle.list_name;
+                await loadList(bundle.list_name);
+                setTimeout(() => panel.remove(), 1500);
+            } else {
+                status.innerHTML = (res.errors || [res.error]).map(e => `<div class="pe-error">${e}</div>`).join("");
+            }
+        }));
+    }
+
+    function openFullBackupImportForm(bundle) {
+        const panel = document.createElement("div");
+        panel.className = "pe-form-overlay";
+        const listNames = Object.keys(bundle.lists || {});
+        const totalItems = listNames.reduce((sum, n) => sum + (bundle.lists[n] || []).length, 0);
+        panel.innerHTML = `
+          <h3 style="margin-top:0">Restore full backup</h3>
+          <p style="color:#888;font-size:12px;">This bundle contains ${listNames.length} list(s), ${totalItems} item(s) total, plus a full taxonomy.
+          For a whole-dataset backup, each list is merged automatically using safe defaults: new items are added,
+          exact ID matches are skipped, and anything flagged as a possible duplicate is also skipped (re-import that
+          single list on its own afterward if you want fine-grained control over those).</p>
+          <div id="pe-fb-status"></div>
+          <div style="margin-top:12px;">
+            <button class="pe-btn pe-btn-primary" id="pe-fb-apply">Merge into current data</button>
+            <button class="pe-btn" id="pe-fb-cancel">Cancel</button>
+          </div>
+        `;
+        overlay.querySelector(".pe-modal").appendChild(panel);
+
+        panel.querySelector("#pe-fb-cancel").addEventListener("click", () => panel.remove());
+        panel.querySelector("#pe-fb-apply").addEventListener("click", async () => {
+            const status = panel.querySelector("#pe-fb-status");
+            const totals = { imported: 0, merged: 0, skipped: 0 };
+            for (const listName of listNames) {
+                status.innerHTML = `Merging ${listName}...`;
+                const singleBundle = { list_name: listName, items: bundle.lists[listName], taxonomy_subset: bundle.taxonomy || {} };
+                const res = await fetchJsonSafe(`${API}/import_commit`, {
+                    method: "POST", headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ bundle: singleBundle, tag_decisions: {}, item_decisions: {} }),
+                });
+                if (res.ok) {
+                    totals.imported += res.summary.imported;
+                    totals.merged += res.summary.merged;
+                    totals.skipped += res.summary.skipped;
+                } else {
+                    status.innerHTML = `<div class="pe-error">Failed on ${listName}: ${(res.errors || [res.error]).join(", ")}</div>`;
+                    return;
+                }
+            }
+            Object.assign(taxonomy, await getTaxonomy(true));
+            invalidateDatasetCaches();
+            await loadList(select.value);
+            status.innerHTML = `<span style="color:#7ac47a">Done. Imported: ${totals.imported}, merged: ${totals.merged}, skipped: ${totals.skipped}.</span>`;
+        });
+    }
 
     function openLlmSettingsPanel() {
         const panel = document.createElement("div");

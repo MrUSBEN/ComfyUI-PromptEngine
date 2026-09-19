@@ -1,0 +1,8 @@
+# Your live, editable dataset — bootstrapped automatically from data_defaults/ on first
+# run. Deliberately gitignored so `git pull` for code/feature updates can NEVER overwrite
+# your customized items, tags, or generated data. To get new default content published
+# later, use the Import feature in the editor instead of touching this folder directly.
+data/
+
+__pycache__/
+*.pyc

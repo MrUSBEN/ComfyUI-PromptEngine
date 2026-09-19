@@ -1,9 +1,24 @@
 import os
 import json
 import random
+import shutil
 from collections import OrderedDict
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
+DEFAULTS_DIR = os.path.join(os.path.dirname(__file__), "data_defaults")
+
+
+def _bootstrap_data_dir():
+    """On first run (data/ doesn't exist yet — e.g. a fresh install), copies the
+    shipped default dataset in. If data/ already exists, this does nothing at all —
+    data/ is gitignored specifically so a `git pull` for code updates can never
+    overwrite a person's customized dataset, since git never tracks it once it's
+    been created locally."""
+    if not os.path.exists(DATA_DIR) and os.path.exists(DEFAULTS_DIR):
+        shutil.copytree(DEFAULTS_DIR, DATA_DIR)
+
+
+_bootstrap_data_dir()
 
 # Maps pipeline field name -> dataset list filename (without .json)
 STEP_6_PROP_KEYS = ["environmental_prop", "weather", "time_period"]
@@ -12,6 +27,23 @@ STEP_6_LIST_KEYS = ["environmental_props_list", "weather_effects_list", "time_pe
 STEP_7_PROP_KEYS = ["key_light", "secondary_light", "atmospheric_fx", "color_palette", "mood"]
 STEP_7_LIST_KEYS = ["key_lighting_list", "secondary_light_list", "atmospheric_fx_list",
                      "color_palettes_list", "moods_list"]
+
+
+def infer_character_count(item):
+    """Derives how many characters an actors_list item represents from its own
+    social-context tag, so custom-added items work correctly even when nothing ever
+    explicitly set character_count on them. An explicit stored value always wins —
+    this is only the fallback for when the field is missing entirely."""
+    tags = set(item.get("tags", []))
+    if "crowd" in tags:
+        return 0
+    if "group" in tags:
+        return 3
+    if "duo" in tags:
+        return 2
+    if "solo" in tags:
+        return 1
+    return 1  # no social-context tag present — safest default is a single character
 
 
 def load_dataset():
@@ -81,7 +113,9 @@ def generate_one(dataset, rng, wildcard_rate):
     # Step 4: Actors + per-character outfit/condition/expression
     actors = select_item("actors_list", dataset, active_tags, active_exclusions, rng, wildcard_rate)
     fields["actors"] = actors["name"]
-    character_count = actors.get("character_count", 1)
+    character_count = actors.get("character_count")
+    if character_count is None:
+        character_count = infer_character_count(actors)
 
     if character_count == 1:
         outfit = select_item("outfits_list", dataset, active_tags, active_exclusions, rng, wildcard_rate)

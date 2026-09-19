@@ -2,10 +2,12 @@ import os
 import json
 import asyncio
 
+from . import nodes
 from .nodes import NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS, DATA_DIR
 from .taxonomy import load_taxonomy, save_taxonomy, add_tag, add_category, rename_tag_in_taxonomy, delete_tag_from_taxonomy
 from .validator import validate_list, validate_full_dataset
 from . import llm_backend
+from . import export_import as ei
 from .pipeline import PIPELINE_STEPS, DATASET_LISTS, get_tag_producers, get_tag_usage, get_direction_candidates, get_required_exclude_examples
 
 WEB_DIRECTORY = "web"
@@ -196,6 +198,11 @@ try:
         body = await request.json()
         items = body.get("items", [])
 
+        if name == "actors_list":
+            for it in items:
+                if it.get("character_count") is None:
+                    it["character_count"] = nodes.infer_character_count(it)
+
         errors, warnings = validate_list(items)
         if errors:
             return web.json_response({"ok": False, "errors": errors, "warnings": warnings}, status=400)
@@ -297,6 +304,85 @@ try:
                     result["auto_unloaded"] = unload_result.get("ok", False)
 
         return web.json_response(result)
+
+    @routes.get("/prompt_engine/list/{name}/export")
+    async def get_list_export(request):
+        name = request.match_info["name"]
+        path = _list_path(name)
+        if not os.path.exists(path):
+            return web.json_response({"error": "list not found"}, status=404)
+        with open(path, "r") as f:
+            items = json.load(f)
+        bundle = ei.build_export_bundle(name, items, load_taxonomy())
+        return web.json_response(bundle)
+
+    @routes.get("/prompt_engine/export_all")
+    async def get_export_all(request):
+        bundle = ei.build_full_backup(_read_all_lists(), load_taxonomy())
+        return web.json_response(bundle)
+
+    @routes.post("/prompt_engine/import_preview")
+    async def post_import_preview(request):
+        body = await request.json()
+        bundle = body.get("bundle", {})
+        list_name = bundle.get("list_name")
+        if not list_name:
+            return web.json_response({"ok": False, "error": "This bundle isn't a single-list export (missing list_name)."})
+
+        path = _list_path(list_name)
+        existing_items = []
+        if os.path.exists(path):
+            with open(path, "r") as f:
+                existing_items = json.load(f)
+
+        item_diff = ei.diff_items(bundle.get("items", []), existing_items)
+        tax_diff = ei.diff_taxonomy_subset(bundle.get("taxonomy_subset", {}), load_taxonomy())
+
+        return web.json_response({
+            "ok": True,
+            "list_name": list_name,
+            "new_items": item_diff["new_items"],
+            "exact_duplicates": item_diff["exact_duplicates"],
+            "possible_duplicates": item_diff["possible_duplicates"],
+            "taxonomy": tax_diff,
+        })
+
+    @routes.post("/prompt_engine/import_commit")
+    async def post_import_commit(request):
+        body = await request.json()
+        bundle = body.get("bundle", {})
+        list_name = bundle.get("list_name")
+        tag_decisions = body.get("tag_decisions", {})
+        item_decisions = body.get("item_decisions", {})
+        if not list_name:
+            return web.json_response({"ok": False, "error": "This bundle isn't a single-list export (missing list_name)."})
+
+        path = _list_path(list_name)
+        existing_items = []
+        if os.path.exists(path):
+            with open(path, "r") as f:
+                existing_items = json.load(f)
+
+        incoming_items = bundle.get("items", [])
+        if list_name == "actors_list":
+            for it in incoming_items:
+                if it.get("character_count") is None:
+                    it["character_count"] = nodes.infer_character_count(it)
+
+        updated_items, updated_taxonomy, summary = ei.apply_import(
+            incoming_items, bundle.get("taxonomy_subset", {}), existing_items,
+            load_taxonomy(), tag_decisions, item_decisions,
+        )
+
+        errors, warnings = validate_list(updated_items)
+        if errors:
+            return web.json_response({"ok": False, "errors": errors, "warnings": warnings}, status=400)
+
+        save_taxonomy(updated_taxonomy)
+        with open(path, "w") as f:
+            json.dump(updated_items, f, indent=2)
+
+        return web.json_response({"ok": True, "summary": summary, "warnings": warnings})
 
 except ImportError:
     # Allows the package to be imported standalone (e.g. for testing) outside ComfyUI
