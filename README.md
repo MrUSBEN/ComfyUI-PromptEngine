@@ -8,7 +8,8 @@ A ComfyUI custom node that generates varied, logically consistent image prompt v
 - Generates as many variations as you want in one run (`count`), returned as a proper list you can index into downstream.
 - Handles multiple characters automatically — solo, duo, or group actors each get their own outfit/condition/expression fields.
 - Comes with a base dataset of ~590 hand-written items across 19 categories, a portion of which are already hand-tagged with real `required_tags`/`exclude_tags` cross-references (see the Changelog).
-- Includes a full in-node editor — dataset CRUD, batch tools, taxonomy management, a pipeline visualizer, and optional local-LLM assistance — so you rarely need to touch the underlying JSON files by hand.
+- Includes a full in-node editor — dataset CRUD, batch tools, taxonomy management, a pipeline visualizer, export/import for sharing or backing up custom lists, and optional local-LLM assistance — so you rarely need to touch the underlying JSON files by hand.
+- Your customized dataset lives in a gitignored `data/` folder, bootstrapped once from tracked defaults — pulling future updates to this repo never overwrites your own edits.
 
 ## Installing
 
@@ -38,6 +39,7 @@ Click **"📝 Edit Dataset"** on the node to open the editor — no file editing
 - **Browse & edit** any of the 19 lists, add/edit/delete items individually, or select multiple rows with the checkboxes for bulk editing/deleting.
 - **Unified tag editor** — every tag-editing screen (single item, batch add, bulk edit) shows one list per taxonomy tag with a `— / Tag / Req / Excl` toggle, instead of three separate duplicated lists.
 - **Batch Add** — paste a bunch of new item names at once (one per line or comma-separated), either apply shared tags to all of them, or let a local LLM suggest tags per item for you to review.
+- **Export / Import** — export any list (or a full backup) as a portable JSON bundle to share with others or back up; importing runs a duplicate check against your existing data (by ID and by a combined name+tag similarity) so you only need to review genuinely ambiguous items, not re-approve everything.
 - **Manage Taxonomy** — add, rename, or delete the tags themselves. Renaming/deleting shows exactly which items are affected before anything changes, and both are fully undoable.
 - **Pipeline view** — click "Pipeline" on any item to see where it sits in the 8-step chain and which other steps its tags affect.
 - **Undo** — every change (single, batch, or taxonomy edit) can be undone from the relevant panel's footer.
@@ -106,5 +108,12 @@ You don't need to touch this to use the node — it's only relevant if you're ad
 
 **Misc**
 - Project folder renamed to `ComfyUI-PromptEngine` to match the repository name.
+
+**v1.7 — Character-count robustness, safe updates, and export/import**
+- Fixed a real gap where custom-added `actors_list` items (via the editor form, batch add, or LLM suggest) never got a `character_count` set, silently defaulting to solo behavior regardless of their tags. Now derived automatically from the item's own social-context tag (`solo`→1, `duo`→2, `group`→3, `crowd`→0) whenever it's missing, on every save path — an explicit stored value still always wins if you want to hand-override it.
+- **Safe update structure**: the live `data/` folder is now bootstrapped once from a tracked `data_defaults/` folder and then gitignored — a future `git pull` for code/feature updates can never overwrite your customized dataset, verified with a real test simulating an upstream content update against a customized local copy.
+- **Export**: per-list export as a self-contained bundle (only the taxonomy tags actually used by that list's items are included, not your whole taxonomy), plus a full-dataset backup export (all 19 lists + full taxonomy).
+- **Import**: a three-way diff against your existing data — new items import automatically, exact ID matches are skipped by default, and "possible duplicates" (similar name *and* tag profile) are flagged for a manual decision (skip / merge / import as separate). Taxonomy tags the bundle references that don't exist locally get the same reuse-or-add-as-new choice as the taxonomy manager.
+- The duplicate-detection scoring combines name-text similarity with tag-set overlap rather than either alone — pure name matching missed real duplicates worded differently, and naive tag-overlap alone caused false positives between unrelated items sharing common tags. Fixed by requiring name similarity to clear a floor before tag overlap counts; verified against both failure modes plus a 35-item self-import stress test with zero false positives.
 
 </details>
