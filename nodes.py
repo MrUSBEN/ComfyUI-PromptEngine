@@ -184,7 +184,7 @@ class PromptEngineNode:
     RETURN_NAMES = ("prompt_list", "prompt_list_json")
     OUTPUT_IS_LIST = (True, False)
     FUNCTION = "run"
-    CATEGORY = "Prompt Engine"
+    CATEGORY = "USBEN"
 
     def run(self, seed, count, wildcard_rate):
         dataset = load_dataset()
